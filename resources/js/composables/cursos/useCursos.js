@@ -2,29 +2,20 @@ import axios from "axios";
 import { onMounted, ref } from "vue";
 import { usePage } from "@inertiajs/vue3";
 
-const oUsuario = ref({
+const oCurso = ref({
     id: 0,
     nombre: "",
-    paterno: "",
-    materno: "",
-    ci: "",
-    ci_exp: "",
-    email: "",
-    tipo: "",
-    foto: "",
-    acceso: 0 + "",
-    curso_id: "",
     _method: "POST",
 });
 
-export const useUsuarios = () => {
+export const useCursos = () => {
     const { flash } = usePage().props;
-    const getUsuarios = async () => {
+    const getCursos = async () => {
         try {
-            const response = await axios.get(route("usuarios.listado"), {
+            const response = await axios.get(route("cursos.listado"), {
                 headers: { Accept: "application/json" },
             });
-            return response.data.usuarios;
+            return response.data.cursos;
         } catch (err) {
             Swal.fire({
                 icon: "error",
@@ -43,25 +34,25 @@ export const useUsuarios = () => {
         }
     };
 
-    const getUsuariosByTipo = async (data) => {
+    const getCursosByTipo = async (data) => {
         try {
-            const response = await axios.get(route("usuarios.byTipo"), {
+            const response = await axios.get(route("cursos.byTipo"), {
                 headers: { Accept: "application/json" },
                 params: data,
             });
-            return response.data.usuarios;
+            return response.data.cursos;
         } catch (error) {
             console.error("Error:", error);
             throw error; // Puedes manejar el error según tus necesidades
         }
     };
 
-    const getUsuariosApi = async (data) => {
+    const getCursosApi = async (data) => {
         try {
-            const response = await axios.get(route("usuarios.paginado", data), {
+            const response = await axios.get(route("cursos.paginado", data), {
                 headers: { Accept: "application/json" },
             });
-            return response.data.usuarios;
+            return response.data.cursos;
         } catch (err) {
             Swal.fire({
                 icon: "error",
@@ -79,40 +70,9 @@ export const useUsuarios = () => {
             throw err; // Puedes manejar el error según tus necesidades
         }
     };
-    const saveUsuario = async (data) => {
+    const saveCurso = async (data) => {
         try {
-            const response = await axios.post(route("usuarios.store", data), {
-                headers: { Accept: "application/json" },
-            });
-            Swal.fire({
-                icon: "success",
-                title: "Correcto",
-                text: `${flash.bien ? flash.bien : "Proceso realizado"}`,
-                confirmButtonColor: "#3085d6",
-                confirmButtonText: `Aceptar`,
-            });
-            return response.data;
-        } catch (err) {
-            Swal.fire({
-                icon: "error",
-                title: "Error",
-                text: `${
-                    flash.error
-                        ? flash.error
-                        : err.response?.data
-                        ? err.response?.data?.message
-                        : "Hay errores en el formulario"
-                }`,
-                confirmButtonColor: "#3085d6",
-                confirmButtonText: `Aceptar`,
-            });
-            throw err; // Puedes manejar el error según tus necesidades
-        }
-    };
-
-    const deleteUsuario = async (id) => {
-        try {
-            const response = await axios.delete(route("usuarios.destroy", id), {
+            const response = await axios.post(route("cursos.store", data), {
                 headers: { Accept: "application/json" },
             });
             Swal.fire({
@@ -141,50 +101,63 @@ export const useUsuarios = () => {
         }
     };
 
-    const setUsuario = (item = null) => {
+    const deleteCurso = async (id) => {
+        try {
+            const response = await axios.delete(route("cursos.destroy", id), {
+                headers: { Accept: "application/json" },
+            });
+            Swal.fire({
+                icon: "success",
+                title: "Correcto",
+                text: `${flash.bien ? flash.bien : "Proceso realizado"}`,
+                confirmButtonColor: "#3085d6",
+                confirmButtonText: `Aceptar`,
+            });
+            return response.data;
+        } catch (err) {
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: `${
+                    flash.error
+                        ? flash.error
+                        : err.response?.data
+                        ? err.response?.data?.message
+                        : "Hay errores en el formulario"
+                }`,
+                confirmButtonColor: "#3085d6",
+                confirmButtonText: `Aceptar`,
+            });
+            throw err; // Puedes manejar el error según tus necesidades
+        }
+    };
+
+    const setCurso = (item = null) => {
         if (item) {
-            oUsuario.value.id = item.id;
-            oUsuario.value.nombre = item.nombre;
-            oUsuario.value.paterno = item.paterno;
-            oUsuario.value.materno = item.materno;
-            oUsuario.value.ci = item.ci;
-            oUsuario.value.ci_exp = item.ci_exp;
-            oUsuario.value.email = item.email;
-            oUsuario.value.tipo = item.tipo;
-            oUsuario.value.foto = item.foto;
-            oUsuario.value.acceso = item.acceso + "";
-            oUsuario.value.curso_id = item.curso_id;
-            oUsuario.value._method = "PUT";
-            return oUsuario;
+            oCurso.value.id = item.id;
+            oCurso.value.nombre = item.nombre;
+            oCurso.value._method = "PUT";
+            return oCurso;
         }
         return false;
     };
 
-    const limpiarUsuario = () => {
-        oUsuario.value.id = 0;
-        oUsuario.value.nombre = "";
-        oUsuario.value.paterno = "";
-        oUsuario.value.materno = "";
-        oUsuario.value.ci = "";
-        oUsuario.value.ci_exp = "";
-        oUsuario.value.email = "";
-        oUsuario.value.tipo = "";
-        oUsuario.value.foto = "";
-        oUsuario.value.acceso = 0 + "";
-        oUsuario.value.curso_id = "";
-        oUsuario.value._method = "POST";
+    const limpiarCurso = () => {
+        oCurso.value.id = 0;
+        oCurso.value.nombre = "";
+        oCurso.value._method = "POST";
     };
 
     onMounted(() => {});
 
     return {
-        oUsuario,
-        getUsuarios,
-        getUsuariosApi,
-        saveUsuario,
-        deleteUsuario,
-        setUsuario,
-        limpiarUsuario,
-        getUsuariosByTipo,
+        oCurso,
+        getCursos,
+        getCursosApi,
+        saveCurso,
+        deleteCurso,
+        setCurso,
+        limpiarCurso,
+        getCursosByTipo,
     };
 };

@@ -1,7 +1,7 @@
 <script setup>
 import { useForm, usePage } from "@inertiajs/vue3";
 import { useUsuarios } from "@/composables/usuarios/useUsuarios";
-// import { useSucursals } from "@/composables/sucursals/useSucursals";
+import { useCursos } from "@/composables/cursos/useCursos";
 import { watch, ref, computed, defineEmits, onMounted, nextTick } from "vue";
 const props = defineProps({
     open_dialog: {
@@ -15,7 +15,7 @@ const props = defineProps({
 });
 
 const { oUsuario, limpiarUsuario } = useUsuarios();
-// const { getSucursals } = useSucursals();
+const { getCursos } = useCursos();
 const accion = ref(props.accion_dialog);
 const dialog = ref(props.open_dialog);
 let form = useForm(oUsuario.value);
@@ -48,7 +48,7 @@ watch(
 
 const { flash } = usePage().props;
 
-const listTipos = ["ADMINISTRADOR", "SUPERVISOR DE SUCURSAL", "OPERADOR"];
+const listTipos = ["ADMINISTRADOR", "PROFESOR", "ESTUDIANTE"];
 const listExpedido = [
     { value: "LP", label: "La Paz" },
     { value: "CB", label: "Cochabamba" },
@@ -60,7 +60,7 @@ const listExpedido = [
     { value: "PD", label: "Pando" },
     { value: "BN", label: "Beni" },
 ];
-const listSucursals = ref([]);
+const listCursos = ref([]);
 
 const foto = ref(null);
 
@@ -139,11 +139,11 @@ const cerrarDialog = () => {
 };
 
 const cargarListas = () => {
-    cargarSucursals();
+    cargarCursos();
 };
 
-const cargarSucursals = async () => {
-    listSucursals.value = await getSucursals();
+const cargarCursos = async () => {
+    listCursos.value = await getCursos();
 };
 
 onMounted(() => {
@@ -283,27 +283,7 @@ onMounted(() => {
                                 </ul>
                             </div>
                             <div class="col-md-4 mt-2">
-                                <label>Dirección*</label>
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    :class="{
-                                        'parsley-error': form.errors?.dir,
-                                    }"
-                                    v-model="form.dir"
-                                />
-
-                                <ul
-                                    v-if="form.errors?.dir"
-                                    class="parsley-errors-list filled"
-                                >
-                                    <li class="parsley-required">
-                                        {{ form.errors?.dir }}
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-md-4 mt-2">
-                                <label>Email</label>
+                                <label>Correo*</label>
                                 <input
                                     type="text"
                                     class="form-control"
@@ -319,26 +299,6 @@ onMounted(() => {
                                 >
                                     <li class="parsley-required">
                                         {{ form.errors?.email }}
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-md-4 mt-2">
-                                <label>Teléfono/Celular*</label>
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    :class="{
-                                        'parsley-error': form.errors?.fono,
-                                    }"
-                                    v-model="form.fono"
-                                />
-
-                                <ul
-                                    v-if="form.errors?.fono"
-                                    class="parsley-errors-list filled"
-                                >
-                                    <li class="parsley-required">
-                                        {{ form.errors?.fono }}
                                     </li>
                                 </ul>
                             </div>
@@ -372,22 +332,22 @@ onMounted(() => {
                             <div
                                 class="col-md-4 mt-2"
                                 v-show="
-                                    form.tipo == 'SUPERVISOR DE SUCURSAL' ||
-                                    form.tipo == 'OPERADOR'
+                                    form.tipo == 'PROFESOR' ||
+                                    form.tipo == 'ESTUDIANTE'
                                 "
                             >
-                                <label>Seleccionar Sucursal*</label>
+                                <label>Seleccionar Curso*</label>
                                 <select
                                     class="form-select"
                                     :class="{
                                         'parsley-error':
-                                            form.errors?.sucursal_id,
+                                            form.errors?.curso_id,
                                     }"
-                                    v-model="form.sucursal_id"
+                                    v-model="form.curso_id"
                                 >
                                     <option value="">- Seleccione -</option>
                                     <option
-                                        v-for="item in listSucursals"
+                                        v-for="item in listCursos"
                                         :value="item.id"
                                     >
                                         {{ item.nombre }}
@@ -395,11 +355,11 @@ onMounted(() => {
                                 </select>
 
                                 <ul
-                                    v-if="form.errors?.sucursal_id"
+                                    v-if="form.errors?.curso_id"
                                     class="parsley-errors-list filled"
                                 >
                                     <li class="parsley-required">
-                                        {{ form.errors?.sucursal_id }}
+                                        {{ form.errors?.curso_id }}
                                     </li>
                                 </ul>
                             </div>

@@ -3,9 +3,9 @@ import { defineStore } from "pinia";
 export const useConfiguracionStore = defineStore("configuracion", {
     state: () => ({
         oConfiguracion: {
-            nombre_sistema:"SIVCB",
+            nombre_sistema:"SOFTBIO",
             alias:"SJ",
-            razon_social:"SIVCB S.A.",
+            razon_social:"SOFTBIO S.A.",
             ciudad:"",
             dir:"",
             fono:"",

@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 use PgSql\Lob;
@@ -22,8 +23,6 @@ class UsuarioController extends Controller
         "paterno" => "required|min:1",
         "ci" => "required|min:1",
         "ci_exp" => "required",
-        "dir" => "required|min:1",
-        "fono" => "required|min:1",
         "tipo" => "required",
     ];
 
@@ -37,8 +36,8 @@ class UsuarioController extends Controller
         "ci.min" => "Debes ingresar al menos :min caracteres",
         "ci_exp.required" => "Este campo es obligatorio",
         "email.unique" => "El correo electrónico ya fue registrado",
-        "dir.required" => "Este campo es obligatorio",
-        "dir.min" => "Debes ingresar al menos :min caracteres",
+        "curso_id.required" => "Este campo es obligatorio",
+        "curso_id.unique" => "Este curso ya tiene un profesor asignado",
         "fono.required" => "Este campo es obligatorio",
         "fono.min" => "Debes ingresar al menos :min caracteres",
         "tipo.required" => "Este campo es obligatorio",
@@ -78,7 +77,7 @@ class UsuarioController extends Controller
     public function api(Request $request)
     {
         // Log::debug($request);
-        $usuarios = User::where("id", "!=", 1)->where("tipo", "!=", "CLIENTE");
+        $usuarios = User::with(["curso"])->where("id", "!=", 1)->where("tipo", "!=", "CLIENTE");
         $usuarios = $usuarios->get();
         return response()->JSON(["data" => $usuarios]);
     }
@@ -104,30 +103,34 @@ class UsuarioController extends Controller
     public function store(Request $request)
     {
         $this->validacion['ci'] = 'required|min:4|numeric|unique:users,ci';
+        $this->validacion['email'] = 'required|email|unique:users,email';
         if ($request->hasFile('foto')) {
             $this->validacion['foto'] = 'image|mimes:jpeg,jpg,png|max:4096';
+        }
+        if ($request->tipo != 'ADMINISTRADOR') {
+            $this->validacion["curso_id"] = "required";
+            if ($request->tipo == 'PROFESOR') {
+                $this->validacion['curso_id'] = [
+                    'required',
+                    Rule::unique('users', 'curso_id')
+                        ->where(function ($query) {
+                            return $query->where('tipo', 'PROFESOR');
+                        })
+                ];
+            }
+        } else {
+            unset($request["curso_id"]);
         }
 
         $request->validate($this->validacion, $this->mensajes);
 
         DB::beginTransaction();
         try {
-            $cont = 0;
-            do {
-                $nombre_usuario = User::getNombreUsuario($request->nombre, $request->paterno);
-                if ($cont > 0) {
-                    $nombre_usuario = $nombre_usuario . $cont;
-                }
-                $request['usuario'] = $nombre_usuario;
-                $cont++;
-            } while (User::where('usuario', $nombre_usuario)->get()->first());
-
             $request['password'] = 'NoNulo';
             $request['fecha_registro'] = date('Y-m-d');
-
             // crear el Usuario
             $nuevo_usuario = User::create(array_map('mb_strtoupper', $request->except('foto')));
-
+            $nuevo_usuario->email = mb_strtolower($request->email);
             $nuevo_usuario->password = Hash::make($request->ci);
             $nuevo_usuario->save();
             if ($request->hasFile('foto')) {
@@ -177,8 +180,25 @@ class UsuarioController extends Controller
     public function update(User $user, Request $request)
     {
         $this->validacion['ci'] = 'required|min:4|numeric|unique:users,ci,' . $user->id;
+        $this->validacion['email'] = 'required|email|unique:users,email,' . $user->id;
         if ($request->hasFile('foto')) {
             $this->validacion['foto'] = 'image|mimes:jpeg,jpg,png|max:4096';
+        }
+
+        if ($request->tipo != 'ADMINISTRADOR') {
+            $this->validacion["curso_id"] = "required";
+            if ($request->tipo == 'PROFESOR') {
+                $this->validacion['curso_id'] = [
+                    'required',
+                    Rule::unique('users', 'curso_id')
+                        ->ignore($user->id)
+                        ->where(function ($query) {
+                            return $query->where('tipo', 'PROFESOR');
+                        })
+                ];
+            }
+        } else {
+            unset($request["curso_id"]);
         }
 
         $request->validate($this->validacion, $this->mensajes);
@@ -186,7 +206,10 @@ class UsuarioController extends Controller
         try {
             $datos_original = HistorialAccion::getDetalleRegistro($user, "users");
             $user->update(array_map('mb_strtoupper', $request->except('foto')));
-
+            $user->email = mb_strtolower($request->email);
+            if ($request->tipo == 'ADMINISTRADOR') {
+                $user->curso_id = null;
+            }
             if ($request->hasFile('foto')) {
                 $antiguo = $user->foto;
                 if ($antiguo != 'default.png') {

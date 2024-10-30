@@ -54,7 +54,8 @@ class ConfiguracionController extends Controller
         DB::beginTransaction();
         try {
             $configuracion->update(array_map("mb_strtoupper", $request->except("logo")));
-
+            $configuracion->correo = mb_strtolower($request->correo);
+            $configuracion->web = mb_strtolower($request->web);
             if ($request->hasFile('logo')) {
                 $antiguo = $configuracion->logo;
                 if ($antiguo && $antiguo != 'default.png') {

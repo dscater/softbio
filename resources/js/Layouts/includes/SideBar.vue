@@ -729,6 +729,30 @@ const logout = () => {
                     </Link>
                 </div>
                 <div
+                    v-if="user_logeado.permisos.includes('materials.index')"
+                    class="menu-item"
+                    :class="[route_current == 'materials.index' ? 'active' : '']"
+                >
+                    <Link :href="route('materials.index')" class="menu-link">
+                        <div class="menu-icon">
+                            <i class="fa fa-list-alt"></i>
+                        </div>
+                        <div class="menu-text">Materiales de Apoyo</div>
+                    </Link>
+                </div>
+                <div
+                    v-if="user_logeado.permisos.includes('cursos.index')"
+                    class="menu-item"
+                    :class="[route_current == 'cursos.index' ? 'active' : '']"
+                >
+                    <Link :href="route('cursos.index')" class="menu-link">
+                        <div class="menu-icon">
+                            <i class="fa fa-list"></i>
+                        </div>
+                        <div class="menu-text">Cursos</div>
+                    </Link>
+                </div>
+                <div
                     v-if="user_logeado.permisos.includes('usuarios.index')"
                     class="menu-item"
                     :class="[route_current == 'usuarios.index' ? 'active' : '']"

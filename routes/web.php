@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\ConfiguracionController;
+use App\Http\Controllers\CursoController;
 use App\Http\Controllers\InicioController;
+use App\Http\Controllers\MateriaController;
+use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReporteController;
 use App\Http\Controllers\UserController;
@@ -56,7 +59,27 @@ Route::middleware('auth')->prefix("admin")->group(function () {
         ["index", "store"]
     );
 
-    
+    // CURSOS
+    Route::get("cursos/api", [CursoController::class, 'api'])->name("cursos.api");
+    Route::get("cursos/paginado", [CursoController::class, 'paginado'])->name("cursos.paginado");
+    Route::get("cursos/listado", [CursoController::class, 'listado'])->name("cursos.listado");
+    Route::resource("cursos", CursoController::class)->only(
+        ["index", "store", "update", "show", "destroy"]
+    );
+
+
+    // MATERIAS
+    Route::get("materias/api", [MateriaController::class, 'api'])->name("materias.api");
+    Route::get("materias/paginado", [MateriaController::class, 'paginado'])->name("materias.paginado");
+    Route::get("materias/listado", [MateriaController::class, 'listado'])->name("materias.listado");
+
+    // MATERIALES
+    Route::get("materials/api", [MaterialController::class, 'api'])->name("materials.api");
+    Route::get("materials/paginado", [MaterialController::class, 'paginado'])->name("materials.paginado");
+    Route::get("materials/listado", [MaterialController::class, 'listado'])->name("materials.listado");
+    Route::resource("materials", MaterialController::class)->only(
+        ["index", "store", "update", "show", "destroy"]
+    );
 
     // REPORTES
     Route::get('reportes/usuarios', [ReporteController::class, 'usuarios'])->name("reportes.usuarios");

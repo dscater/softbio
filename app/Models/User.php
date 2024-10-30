@@ -25,7 +25,6 @@ class User extends Authenticatable
         "materno",
         "ci",
         "ci_exp",
-        "dir",
         "email",
         "fono",
         "password",
@@ -33,7 +32,7 @@ class User extends Authenticatable
         "foto",
         "fecha_registro",
         "acceso",
-        "sucursal_id"
+        "curso_id"
     ];
     protected $appends = ["permisos", "url_foto", "foto_b64", "full_name", "full_ci", "fecha_registro_t"];
 
