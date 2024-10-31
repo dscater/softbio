@@ -27,6 +27,8 @@ class UserController extends Controller
             "materials.edit",
             "materials.destroy",
 
+            "evaluacions.index",
+
             "configuracions.index",
             "configuracions.create",
             "configuracions.edit",
@@ -34,8 +36,12 @@ class UserController extends Controller
 
             "reportes.usuarios",
         ],
-        "SUPERVISOR DE SUCURSAL" => [],
-        "OPERADOR" => [],
+        "PROFESOR" => [
+            "evaluacions.index",
+        ],
+        "ESTUDIANTE" => [
+            "evaluacions.edit",
+        ],
     ];
 
     public static function getPermisosUser()

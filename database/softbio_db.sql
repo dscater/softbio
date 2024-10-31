@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 30-10-2024 a las 16:29:54
+-- Tiempo de generación: 31-10-2024 a las 17:18:51
 -- Versión del servidor: 8.0.30
 -- Versión de PHP: 8.2.22
 
@@ -100,6 +100,13 @@ CREATE TABLE `evaluacions` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `evaluacions`
+--
+
+INSERT INTO `evaluacions` (`id`, `user_id`, `fecha_registro`, `created_at`, `updated_at`) VALUES
+(1, 5, '2024-10-31', '2024-10-31 18:44:27', '2024-10-31 18:44:27');
+
 -- --------------------------------------------------------
 
 --
@@ -109,12 +116,29 @@ CREATE TABLE `evaluacions` (
 CREATE TABLE `evaluacion_preguntas` (
   `id` bigint UNSIGNED NOT NULL,
   `evaluacion_id` bigint UNSIGNED NOT NULL,
+  `tema` int NOT NULL,
   `pregunta` int NOT NULL,
   `opcion` int NOT NULL,
   `correcto` int NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `evaluacion_preguntas`
+--
+
+INSERT INTO `evaluacion_preguntas` (`id`, `evaluacion_id`, `tema`, `pregunta`, `opcion`, `correcto`, `created_at`, `updated_at`) VALUES
+(1, 1, 0, 0, 1, 0, NULL, '2024-10-31 21:18:32'),
+(2, 1, 0, 1, 1, 1, '2024-10-31 21:08:56', '2024-10-31 21:08:56'),
+(3, 1, 0, 2, 1, 1, '2024-10-31 21:08:56', '2024-10-31 21:08:56'),
+(4, 1, 0, 3, 0, 1, '2024-10-31 21:08:56', '2024-10-31 21:09:43'),
+(5, 1, 0, 4, 1, 0, '2024-10-31 21:08:56', '2024-10-31 21:08:56'),
+(6, 1, 0, 5, 0, 0, '2024-10-31 21:08:56', '2024-10-31 21:08:56'),
+(7, 1, 0, 6, 3, 0, '2024-10-31 21:08:56', '2024-10-31 21:08:56'),
+(8, 1, 1, 1, 1, 0, '2024-10-31 21:08:56', '2024-10-31 21:08:56'),
+(9, 1, 2, 0, 1, 0, '2024-10-31 21:18:32', '2024-10-31 21:18:32'),
+(10, 1, 2, 1, 2, 1, '2024-10-31 21:18:32', '2024-10-31 21:18:32');
 
 -- --------------------------------------------------------
 
@@ -167,7 +191,11 @@ INSERT INTO `historial_accions` (`id`, `user_id`, `accion`, `descripcion`, `dato
 (24, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN MATERIAL DE APOYO', 'id: 2<br/>materia_id: 1<br/>fecha_registro: 2024-10-30<br/>created_at: 2024-10-30 16:05:23<br/>updated_at: 2024-10-30 16:05:23<br/>', 'id: 2<br/>materia_id: 1<br/>fecha_registro: 2024-10-30<br/>created_at: 2024-10-30 16:05:23<br/>updated_at: 2024-10-30 16:05:23<br/>', 'MATERIAL DE APOYO', '2024-10-30', '16:26:32', '2024-10-30 20:26:32', '2024-10-30 20:26:32'),
 (25, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN MATERIAL DE APOYO', 'id: 2<br/>materia_id: 1<br/>fecha_registro: 2024-10-30<br/>created_at: 2024-10-30 16:05:23<br/>updated_at: 2024-10-30 16:05:23<br/>', 'id: 2<br/>materia_id: 1<br/>fecha_registro: 2024-10-30<br/>created_at: 2024-10-30 16:05:23<br/>updated_at: 2024-10-30 16:05:23<br/>', 'MATERIAL DE APOYO', '2024-10-30', '16:26:53', '2024-10-30 20:26:53', '2024-10-30 20:26:53'),
 (26, 1, 'ELIMINACIÓN', 'EL USUARIO  ELIMINÓ UN MATERIAL DE APOYO', 'id: 2<br/>materia_id: 1<br/>fecha_registro: 2024-10-30<br/>created_at: 2024-10-30 16:05:23<br/>updated_at: 2024-10-30 16:05:23<br/>', NULL, 'MATERIAL DE APOYO', '2024-10-30', '16:29:31', '2024-10-30 20:29:31', '2024-10-30 20:29:31'),
-(27, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UN MATERIAL DE APOYO', 'id: 3<br/>materia_id: 1<br/>fecha_registro: 2024-10-30<br/>created_at: 2024-10-30 16:29:41<br/>updated_at: 2024-10-30 16:29:41<br/>', NULL, 'MATERIAL DE APOYO', '2024-10-30', '16:29:41', '2024-10-30 20:29:41', '2024-10-30 20:29:41');
+(27, 1, 'CREACIÓN', 'EL USUARIO  REGISTRO UN MATERIAL DE APOYO', 'id: 3<br/>materia_id: 1<br/>fecha_registro: 2024-10-30<br/>created_at: 2024-10-30 16:29:41<br/>updated_at: 2024-10-30 16:29:41<br/>', NULL, 'MATERIAL DE APOYO', '2024-10-30', '16:29:41', '2024-10-30 20:29:41', '2024-10-30 20:29:41'),
+(28, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN USUARIO', 'id: 5<br/>nombre: CARLOS<br/>paterno: CHOQUE<br/>materno: MAMANI<br/>ci: 4444<br/>ci_exp: CB<br/>email: carlos@gmail.com<br/>password: $2y$12$JkAwVYMtNJy9UFwQv6RxAOq/jONkgTn2CiIHuGJQfSvztvmrO6.sW<br/>tipo: ESTUDIANTE<br/>foto: <br/>fecha_registro: 2024-10-30<br/>acceso: 0<br/>curso_id: 1<br/>created_at: 2024-10-30 15:02:02<br/>updated_at: 2024-10-30 15:02:02<br/>', 'id: 5<br/>nombre: CARLOS<br/>paterno: CHOQUE<br/>materno: MAMANI<br/>ci: 4444<br/>ci_exp: CB<br/>email: carlos@gmail.com<br/>password: $2y$12$JkAwVYMtNJy9UFwQv6RxAOq/jONkgTn2CiIHuGJQfSvztvmrO6.sW<br/>tipo: ESTUDIANTE<br/>foto: <br/>fecha_registro: 2024-10-30<br/>acceso: 1<br/>curso_id: 1<br/>created_at: 2024-10-30 15:02:02<br/>updated_at: 2024-10-31 14:42:30<br/>', 'USUARIOS', '2024-10-31', '14:42:30', '2024-10-31 18:42:30', '2024-10-31 18:42:30'),
+(29, 5, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA EVALUACIÓN', 'id: 1<br/>user_id: 5<br/>fecha_registro: 2024-10-31<br/>created_at: 2024-10-31 14:44:27<br/>updated_at: 2024-10-31 14:44:27<br/>', '', 'EVALUACIONES', '2024-10-31', '17:08:56', '2024-10-31 21:08:56', '2024-10-31 21:08:56'),
+(30, 5, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA EVALUACIÓN', 'id: 1<br/>user_id: 5<br/>fecha_registro: 2024-10-31<br/>created_at: 2024-10-31 14:44:27<br/>updated_at: 2024-10-31 14:44:27<br/>', '', 'EVALUACIONES', '2024-10-31', '17:09:43', '2024-10-31 21:09:43', '2024-10-31 21:09:43'),
+(31, 5, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA EVALUACIÓN', 'id: 1<br/>user_id: 5<br/>fecha_registro: 2024-10-31<br/>created_at: 2024-10-31 14:44:27<br/>updated_at: 2024-10-31 14:44:27<br/>', '', 'EVALUACIONES', '2024-10-31', '17:18:32', '2024-10-31 21:18:32', '2024-10-31 21:18:32');
 
 -- --------------------------------------------------------
 
@@ -304,7 +332,7 @@ INSERT INTO `users` (`id`, `nombre`, `paterno`, `materno`, `ci`, `ci_exp`, `emai
 (2, 'JUAN', 'PERES MAMANI', 'MAMANI', '1111', 'LP', 'juan@gmail.com', '$2y$12$.dtup51bSOjUoa2sWUfi0OYb3CS44PsPy/pq1CmDut5v6CeonH9VK', 'ADMINISTRADOR', '1730299412_.jpg', '2024-10-30', 1, NULL, '2024-10-30 18:43:32', '2024-10-30 18:43:32'),
 (3, 'MARCOS', 'RAMIRES', 'GONZALES', '2222', 'LP', 'marcos@gmail.com', '$2y$12$mwtsLVMd/DLyRcmHTyPsyOwlnZ8pWRfODl6zIsPWFiZUYyXNjU96O', 'PROFESOR', NULL, '2024-10-30', 1, 1, '2024-10-30 18:45:47', '2024-10-30 18:59:55'),
 (4, 'RAMIRO', 'PAREDES', 'PAREDES', '3333', 'LP', 'ramiro@gmail.com', '$2y$12$k7lD3UagGy60cTCuHuGpbeOLiNcupKhMXcRhefzjf0RwmMVu3Z7Z.', 'PROFESOR', NULL, '2024-10-30', 1, 2, '2024-10-30 18:55:21', '2024-10-30 19:00:01'),
-(5, 'CARLOS', 'CHOQUE', 'MAMANI', '4444', 'CB', 'carlos@gmail.com', '$2y$12$JkAwVYMtNJy9UFwQv6RxAOq/jONkgTn2CiIHuGJQfSvztvmrO6.sW', 'ESTUDIANTE', NULL, '2024-10-30', 0, 1, '2024-10-30 19:02:02', '2024-10-30 19:02:02'),
+(5, 'CARLOS', 'CHOQUE', 'MAMANI', '4444', 'CB', 'carlos@gmail.com', '$2y$12$JkAwVYMtNJy9UFwQv6RxAOq/jONkgTn2CiIHuGJQfSvztvmrO6.sW', 'ESTUDIANTE', NULL, '2024-10-30', 1, 1, '2024-10-30 19:02:02', '2024-10-31 18:42:30'),
 (6, 'ELVIS', 'MAMANI', 'MAMANI', '55555', 'LP', 'elvis@gmail.com', '$2y$12$tNAY1SfzaAgOubTFXDapOOCfeT.cQ/IkOwvaBYNItrtqemPft4UCu', 'ESTUDIANTE', NULL, '2024-10-30', 1, 1, '2024-10-30 19:02:21', '2024-10-30 19:02:57'),
 (7, 'MARIA', 'MAMANI', 'SOLIZ', '1212', 'LP', 'maria@gmail.com', '$2y$12$Zby7HK96VjwbYcG9PbwhZud0qQBrjLf75L1Ger1ZSO2rGFFoHP1JK', 'PROFESOR', NULL, '2024-10-30', 1, 3, '2024-10-30 19:02:43', '2024-10-30 19:02:43'),
 (8, 'PABLO', 'SUAREZ', 'MAMANI', '2121', 'CB', 'pablo@gmail.com', '$2y$12$QcTuK5kdIh/uflN8YnrS0.OfgBV3/9ltOBA.Jfo5GwDvyYezF4fnC', 'ESTUDIANTE', NULL, '2024-10-30', 1, 1, '2024-10-30 19:03:29', '2024-10-30 19:03:29');
@@ -410,19 +438,19 @@ ALTER TABLE `cursos`
 -- AUTO_INCREMENT de la tabla `evaluacions`
 --
 ALTER TABLE `evaluacions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `evaluacion_preguntas`
 --
 ALTER TABLE `evaluacion_preguntas`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `historial_accions`
 --
 ALTER TABLE `historial_accions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT de la tabla `materials`

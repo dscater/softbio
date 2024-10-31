@@ -33,6 +33,7 @@
     <script>
         var url_assets = "{{ asset('') }}";
     </script>
+    <script src="{{ asset('assets/js/preguntas.js') }}"></script>
 
     @routes
     @vite(['resources/js/app.js', "resources/js/Pages/{$page['component']}.vue"])

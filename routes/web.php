@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ConfiguracionController;
 use App\Http\Controllers\CursoController;
+use App\Http\Controllers\EvaluacionController;
 use App\Http\Controllers\InicioController;
 use App\Http\Controllers\MateriaController;
 use App\Http\Controllers\MaterialController;
@@ -67,7 +68,6 @@ Route::middleware('auth')->prefix("admin")->group(function () {
         ["index", "store", "update", "show", "destroy"]
     );
 
-
     // MATERIAS
     Route::get("materias/api", [MateriaController::class, 'api'])->name("materias.api");
     Route::get("materias/paginado", [MateriaController::class, 'paginado'])->name("materias.paginado");
@@ -78,6 +78,15 @@ Route::middleware('auth')->prefix("admin")->group(function () {
     Route::get("materials/paginado", [MaterialController::class, 'paginado'])->name("materials.paginado");
     Route::get("materials/listado", [MaterialController::class, 'listado'])->name("materials.listado");
     Route::resource("materials", MaterialController::class)->only(
+        ["index", "store", "update", "show", "destroy"]
+    );
+
+    // EVALUACION
+    Route::get("evaluacions/api", [EvaluacionController::class, 'api'])->name("evaluacions.api");
+    Route::get("evaluacions/paginado", [EvaluacionController::class, 'paginado'])->name("evaluacions.paginado");
+    Route::get("evaluacions/listado", [EvaluacionController::class, 'listado'])->name("evaluacions.listado");
+    Route::get("evaluacions/edit", [EvaluacionController::class, 'edit'])->name("evaluacions.edit");
+    Route::resource("evaluacions", EvaluacionController::class)->only(
         ["index", "store", "update", "show", "destroy"]
     );
 

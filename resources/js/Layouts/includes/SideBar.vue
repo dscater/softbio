@@ -520,218 +520,39 @@ const logout = () => {
                     </Link>
                 </div>
                 <div
-                    v-if="user_logeado.permisos.includes('ventas.index')"
-                    class="menu-item"
-                    :class="[route_current == 'ventas.index' ? 'active' : '']"
-                >
-                    <Link :href="route('ventas.index')" class="menu-link">
-                        <div class="menu-icon">
-                            <i class="fa fa-list"></i>
-                        </div>
-                        <div class="menu-text">Ventas</div>
-                    </Link>
-                </div>
-                <div
-                    v-if="user_logeado.permisos.includes('productos.index')"
+                    v-if="user_logeado.permisos.includes('evaluacions.edit')"
                     class="menu-item"
                     :class="[
-                        route_current == 'productos.index' ? 'active' : '',
+                        route_current == 'evaluacions.edit' ? 'active' : '',
                     ]"
                 >
-                    <Link :href="route('productos.index')" class="menu-link">
+                    <Link :href="route('evaluacions.edit')" class="menu-link">
                         <div class="menu-icon">
-                            <i class="fa fa-boxes"></i>
+                            <i class="fa fa-clipboard-list"></i>
                         </div>
-                        <div class="menu-text">Productos</div>
+                        <div class="menu-text">Evaluación</div>
                     </Link>
                 </div>
                 <div
-                    v-if="user_logeado.permisos.includes('clientes.index')"
-                    class="menu-item"
-                    :class="[route_current == 'clientes.index' ? 'active' : '']"
-                >
-                    <Link :href="route('clientes.index')" class="menu-link">
-                        <div class="menu-icon">
-                            <i class="fa fa-user-friends"></i>
-                        </div>
-                        <div class="menu-text">Clientes</div>
-                    </Link>
-                </div>
-                <div
-                    v-if="
-                        user_logeado.permisos.includes(
-                            'distribucion_productos.index'
-                        )
-                    "
+                    v-if="user_logeado.permisos.includes('evaluacions.index')"
                     class="menu-item"
                     :class="[
-                        route_current == 'distribucion_productos.index'
-                            ? 'active'
-                            : '',
+                        route_current == 'evaluacions.index' ? 'active' : '',
                     ]"
                 >
-                    <Link
-                        :href="route('distribucion_productos.index')"
-                        class="menu-link"
-                    >
-                        <div class="menu-icon">
-                            <i class="fa fa-truck-loading"></i>
-                        </div>
-                        <div class="menu-text">Distribución de productos</div>
-                    </Link>
-                </div>
-                <div
-                    v-if="
-                        user_logeado.permisos.includes(
-                            'ingreso_productos.index'
-                        )
-                    "
-                    class="menu-item"
-                    :class="[
-                        route_current == 'ingreso_productos.index'
-                            ? 'active'
-                            : '',
-                    ]"
-                >
-                    <Link
-                        :href="route('ingreso_productos.index')"
-                        class="menu-link"
-                    >
-                        <div class="menu-icon">
-                            <i class="fa fa-arrow-right"></i>
-                        </div>
-                        <div class="menu-text">Ingreso de productos</div>
-                    </Link>
-                </div>
-                <div
-                    v-if="
-                        user_logeado.permisos.includes('salida_productos.index')
-                    "
-                    class="menu-item"
-                    :class="[
-                        route_current == 'salida_productos.index'
-                            ? 'active'
-                            : '',
-                    ]"
-                >
-                    <Link
-                        :href="route('salida_productos.index')"
-                        class="menu-link"
-                    >
-                        <div class="menu-icon">
-                            <i class="fa fa-arrow-left"></i>
-                        </div>
-                        <div class="menu-text">Salida de productos</div>
-                    </Link>
-                </div>
-                <div
-                    v-if="user_logeado.permisos.includes('tipo_ingresos.index')"
-                    class="menu-item"
-                    :class="[
-                        route_current == 'tipo_ingresos.index' ? 'active' : '',
-                    ]"
-                >
-                    <Link
-                        :href="route('tipo_ingresos.index')"
-                        class="menu-link"
-                    >
-                        <div class="menu-icon">
-                            <i class="fa fa-list"></i>
-                        </div>
-                        <div class="menu-text">Tipo de ingresos</div>
-                    </Link>
-                </div>
-                <div
-                    v-if="user_logeado.permisos.includes('tipo_salidas.index')"
-                    class="menu-item"
-                    :class="[
-                        route_current == 'tipo_salidas.index' ? 'active' : '',
-                    ]"
-                >
-                    <Link :href="route('tipo_salidas.index')" class="menu-link">
-                        <div class="menu-icon">
-                            <i class="fa fa-list"></i>
-                        </div>
-                        <div class="menu-text">Tipo de salidas</div>
-                    </Link>
-                </div>
-                <div
-                    v-if="user_logeado.permisos.includes('proveedors.index')"
-                    class="menu-item"
-                    :class="[
-                        route_current == 'proveedors.index' ? 'active' : '',
-                    ]"
-                >
-                    <Link :href="route('proveedors.index')" class="menu-link">
+                    <Link :href="route('evaluacions.index')" class="menu-link">
                         <div class="menu-icon">
                             <i class="fa fa-list-alt"></i>
                         </div>
-                        <div class="menu-text">Proveedores</div>
-                    </Link>
-                </div>
-                <div
-                    v-if="user_logeado.permisos.includes('sucursals.index')"
-                    class="menu-item"
-                    :class="[
-                        route_current == 'sucursals.index' ? 'active' : '',
-                    ]"
-                >
-                    <Link :href="route('sucursals.index')" class="menu-link">
-                        <div class="menu-icon">
-                            <i class="fa fa-list-alt"></i>
-                        </div>
-                        <div class="menu-text">Sucursales</div>
-                    </Link>
-                </div>
-                <div
-                    v-if="
-                        user_logeado.permisos.includes('unidad_medidas.index')
-                    "
-                    class="menu-item"
-                    :class="[
-                        route_current == 'unidad_medidas.index' ? 'active' : '',
-                    ]"
-                >
-                    <Link
-                        :href="route('unidad_medidas.index')"
-                        class="menu-link"
-                    >
-                        <div class="menu-icon">
-                            <i class="fa fa-list-alt"></i>
-                        </div>
-                        <div class="menu-text">Unidades de medida</div>
-                    </Link>
-                </div>
-                <div
-                    v-if="user_logeado.permisos.includes('marcas.index')"
-                    class="menu-item"
-                    :class="[route_current == 'marcas.index' ? 'active' : '']"
-                >
-                    <Link :href="route('marcas.index')" class="menu-link">
-                        <div class="menu-icon">
-                            <i class="fa fa-list-alt"></i>
-                        </div>
-                        <div class="menu-text">Marcas</div>
-                    </Link>
-                </div>
-                <div
-                    v-if="user_logeado.permisos.includes('categorias.index')"
-                    class="menu-item"
-                    :class="[
-                        route_current == 'categorias.index' ? 'active' : '',
-                    ]"
-                >
-                    <Link :href="route('categorias.index')" class="menu-link">
-                        <div class="menu-icon">
-                            <i class="fa fa-list-alt"></i>
-                        </div>
-                        <div class="menu-text">Categorías</div>
+                        <div class="menu-text">Evaluación</div>
                     </Link>
                 </div>
                 <div
                     v-if="user_logeado.permisos.includes('materials.index')"
                     class="menu-item"
-                    :class="[route_current == 'materials.index' ? 'active' : '']"
+                    :class="[
+                        route_current == 'materials.index' ? 'active' : '',
+                    ]"
                 >
                     <Link :href="route('materials.index')" class="menu-link">
                         <div class="menu-icon">
@@ -768,19 +589,6 @@ const logout = () => {
                     class="menu-item has-sub"
                     v-if="
                         user_logeado.permisos.includes('reportes.usuarios') ||
-                        user_logeado.permisos.includes(
-                            'reportes.stock_productos'
-                        ) ||
-                        user_logeado.permisos.includes(
-                            'reportes.kardex_productos'
-                        ) ||
-                        user_logeado.permisos.includes('reportes.ventas') ||
-                        user_logeado.permisos.includes(
-                            'reportes.ingreso_productos'
-                        ) ||
-                        user_logeado.permisos.includes(
-                            'reportes.salida_productos'
-                        ) ||
                         user_logeado.permisos.includes('reportes.productos')
                     "
                 >
@@ -936,7 +744,9 @@ const logout = () => {
                     </div>
                 </div>
                 <div
-                    v-if="user_logeado.permisos.includes('configuracions.index')"
+                    v-if="
+                        user_logeado.permisos.includes('configuracions.index')
+                    "
                     class="menu-item"
                     :class="[
                         route_current == 'configuracions.index' ? 'active' : '',

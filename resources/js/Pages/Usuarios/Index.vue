@@ -52,6 +52,10 @@ const columns = [
         data: "full_name",
     },
     {
+        title: "EMAIL",
+        data: "email",
+    },
+    {
         title: "C.I.",
         data: "full_ci",
     },

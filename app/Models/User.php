@@ -104,6 +104,10 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Curso::class, 'curso_id');
     }
+    public function evaluacion()
+    {
+        return $this->hasOne(Evaluacion::class, 'user_id');
+    }
 
     // FUNCIONES
     public static function getNombreUsuario($nom, $apep)
