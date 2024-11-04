@@ -32,7 +32,7 @@ const { props } = usePage();
     </ol>
     <!-- END breadcrumb -->
     <!-- BEGIN page-header -->
-    <h1 class="page-header">Panel</h1>
+    <!-- <h1 class="page-header">Panel</h1> -->
     <!-- END page-header -->
     <div class="row">
         <div class="col-12">

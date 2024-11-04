@@ -114,7 +114,7 @@ onMounted(() => {
                             <div class="mb-20px">
                                 <button
                                     type="submit"
-                                    class="btn btn-theme d-block w-100 h-45px btn-lg"
+                                    class="btn btn-warning d-block w-100 h-45px btn-lg"
                                 >
                                     Ingresar
                                 </button>
@@ -151,6 +151,7 @@ onMounted(() => {
 }
 
 .login-cover .login-cover-bg {
-    background: linear-gradient(to bottom, #153f59, #94b8d7);
+    /* background: linear-gradient(to bottom, #153f59, #94b8d7); */
+    background: var(--principal);
 }
 </style>

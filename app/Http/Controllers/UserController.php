@@ -85,19 +85,9 @@ class UserController extends Controller
             $array_infos[] = [
                 'label' => 'USUARIOS',
                 'cantidad' => User::where('id', '!=', 1)->where("tipo", "!=", "CLIENTE")->count(),
-                'color' => 'bg-blue',
+                'color' => 'bg-principal',
                 'icon' => "fa-users",
                 "url" => "usuarios.index"
-            ];
-        }
-
-        if (in_array('clientes.index', self::$permisos[$tipo])) {
-            $array_infos[] = [
-                'label' => 'CLIENTES',
-                'cantidad' => Cliente::count(),
-                'color' => 'bg-info',
-                'icon' => "fa-user-friends",
-                "url" => "clientes.index"
             ];
         }
 

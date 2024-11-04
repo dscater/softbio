@@ -1,9 +1,9 @@
 :root {
-    --principal: #153f59;
+    --principal: #05a7a7;
     --principal_hover: #134869;
-    --principal_transparent: #153f59bd;
-    --secundario: #94b8d7;
-    --secundario_hover: #9fc4e4;
+    --principal_transparent: #05a7a7bd;
+    --secundario: #ff9700;
+    --secundario_hover: #db8400;
     --fondo_app: #e8e9eb;
     --correcto: #d2e7c9;
     --transparente: #000000bd;
