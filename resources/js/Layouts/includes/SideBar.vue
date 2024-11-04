@@ -520,6 +520,20 @@ const logout = () => {
                     </Link>
                 </div>
                 <div
+                    v-if="user_logeado.permisos.includes('aprendizajes.index')"
+                    class="menu-item"
+                    :class="[
+                        route_current == 'aprendizajes.index' ? 'active' : '',
+                    ]"
+                >
+                    <Link :href="route('aprendizajes.index')" class="menu-link">
+                        <div class="menu-icon">
+                            <i class="fa fa-gamepad"></i>
+                        </div>
+                        <div class="menu-text">Aprendizaje</div>
+                    </Link>
+                </div>
+                <div
                     v-if="user_logeado.permisos.includes('evaluacions.edit')"
                     class="menu-item"
                     :class="[

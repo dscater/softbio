@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AprendizajeController;
 use App\Http\Controllers\ConfiguracionController;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\EvaluacionController;
@@ -87,6 +88,15 @@ Route::middleware('auth')->prefix("admin")->group(function () {
     Route::get("evaluacions/listado", [EvaluacionController::class, 'listado'])->name("evaluacions.listado");
     Route::get("evaluacions/edit", [EvaluacionController::class, 'edit'])->name("evaluacions.edit");
     Route::resource("evaluacions", EvaluacionController::class)->only(
+        ["index", "store", "update", "show", "destroy"]
+    );
+
+    // APRENDIZAJE
+    Route::get("aprendizajes/api", [AprendizajeController::class, 'api'])->name("aprendizajes.api");
+    Route::get("aprendizajes/paginado", [AprendizajeController::class, 'paginado'])->name("aprendizajes.paginado");
+    Route::get("aprendizajes/listado", [AprendizajeController::class, 'listado'])->name("aprendizajes.listado");
+    Route::get("aprendizajes/mejores", [AprendizajeController::class, 'mejores'])->name("aprendizajes.mejores");
+    Route::resource("aprendizajes", AprendizajeController::class)->only(
         ["index", "store", "update", "show", "destroy"]
     );
 

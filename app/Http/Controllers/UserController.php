@@ -38,9 +38,13 @@ class UserController extends Controller
         ],
         "PROFESOR" => [
             "evaluacions.index",
+            
+            "aprendizajes.index",
         ],
         "ESTUDIANTE" => [
             "evaluacions.edit",
+
+            "aprendizajes.index",
         ],
     ];
 
