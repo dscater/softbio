@@ -23,7 +23,7 @@ class AprendizajeController extends Controller
 
     public function mejores()
     {
-        $aprendizajes = Aprendizaje::select("aprendizajes.*")->with(["user"])->orderBy("puntjae", "desc")->get()->take(10);
+        $aprendizajes = Aprendizaje::select("aprendizajes.*")->with(["user"])->orderBy("puntaje", "desc")->get()->take(10);
         return response()->JSON([
             "aprendizajes" => $aprendizajes
         ]);

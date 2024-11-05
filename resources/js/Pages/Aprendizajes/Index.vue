@@ -4,14 +4,39 @@ defineOptions({ layout: AprendizajeLayout });
 import { useApp } from "@/composables/useApp";
 import { Head, Link } from "@inertiajs/vue3";
 import { ref, onMounted, onBeforeUnmount } from "vue";
+import Juego from "@/Pages/Aprendizajes/Juevo.vue";
 
 const listAprendizajes = ref([]);
+const urlasset = ref(url_assets);
 const loading = ref(false);
 const jugando = ref(false);
 const puntaje = ref(0);
-
+const tiempoPorPregunta = ref(60);
+const tiempoPregunta = ref(tiempoPorPregunta.value);
+const puntajePorPregunta = ref(5);
+const aumentaPuntajeCada = ref(10);
+const contPreguntasRespondidas = ref(0);
+const listPreguntas = ref(preguntas.flatMap((tema) => tema.p));
+const indexPreguntaActual = ref(0);
+const preguntaActual = ref(listPreguntas.value[indexPreguntaActual.value]);
+const intervalTiempoJuego = ref(null);
 const iniciarJuego = () => {
     jugando.value = true;
+    conteoDeTiempo();
+};
+
+const conteoDeTiempo = () => {
+    intervalTiempoJuego.value = setInterval(() => {
+        tiempoPregunta.value--;
+        if (tiempoPregunta.value < 0) {
+            tiempoPregunta.value = tiempoPorPregunta.value;
+            actualizaPregunta();
+        }
+    }, 1000);
+};
+
+const finalizaConteo = () => {
+    clearInterval(intervalTiempoJuego.value);
 };
 
 const cargarListas = () => {
@@ -23,6 +48,67 @@ const cargaListAprendizajes = () => {
         listAprendizajes.value = response.data.aprendizajes;
     });
 };
+
+// JUEGO
+const verificaOpcion = (index_opcion) => {
+    if (preguntaActual.value.r === index_opcion) {
+        console.log("Correcto");
+        puntaje.value += parseInt(puntajePorPregunta.value);
+    } else {
+        console.log("Incorrecto");
+    }
+    contPreguntasRespondidas.value++;
+    // verificar total preguntas para aumentar el puntaje
+    if (contPreguntasRespondidas.value === aumentaPuntajeCada.value) {
+        puntajePorPregunta.value += parseInt(5);
+        contPreguntasRespondidas.value = 0;
+    }
+    actualizaPregunta();
+};
+
+const actualizaPregunta = () => {
+    indexPreguntaActual.value++;
+    if (!listPreguntas.value[indexPreguntaActual.value]) {
+        console.log("Termina el juego");
+        finalizarJuego();
+    }
+    finalizaConteo();
+    reiniciaTiempoPregunta();
+    conteoDeTiempo();
+    preguntaActual.value = listPreguntas.value[indexPreguntaActual.value];
+};
+
+const reiniciaTiempoPregunta = () => {
+    tiempoPregunta.value = tiempoPorPregunta.value;
+};
+
+const getInciso = (index) => {
+    const incisos = ["a", "b", "c", "d", "e", "f"];
+    return incisos[index] + ")";
+};
+
+const volverInicio = () => {
+    jugando.value = false;
+    reiniciaJuego();
+};
+
+const reiniciaJuego = () => {
+    puntaje.value = 0;
+    tiempoPregunta.value = tiempoPorPregunta.value;
+    puntajePorPregunta.value = 5;
+    indexPreguntaActual.value = 0;
+    preguntaActual.value = listPreguntas.value[indexPreguntaActual.value];
+    contPreguntasRespondidas.value = 0;
+    finalizaConteo();
+};
+
+const finalizarJuego = () => {
+    finalizaConteo();
+    console.log("finaliza");
+    volverInicio();
+};
+
+// FIN JUEGO
 
 onMounted(() => {
     cargarListas();
@@ -62,11 +148,64 @@ onBeforeUnmount(() => {});
                 </div>
             </div>
             <div class="col-12" v-show="jugando">
-                <div class="contenedor_animacion"></div>
-                <div class="contenedor_preguntas"></div>
-                <a :href="route('inicio')" class="boton btn-volver">
-                    <i class="fa fa-arrow-left"></i> Volver
-                </a>
+                <div class="contenedor_animacion">
+                    <div class="puntaje_juego bg-tablero">
+                        <div class="txt-tablero">Puntaje:</div>
+                        <span
+                            class="txt_puntaje txt-tablero"
+                            v-text="puntaje"
+                        ></span>
+                    </div>
+                    <div class="temporizador bg-tablero">
+                        <img
+                            class="img_temporizador"
+                            :src="
+                                urlasset + 'imgs/aprendizaje/temporizador.png'
+                            "
+                            alt="Tiempo"
+                        />
+                        <span
+                            class="txt_temporizador txt-tablero"
+                            v-text="tiempoPregunta"
+                        ></span>
+                    </div>
+                    <Juego :estadoJuego="jugando"></Juego>
+                </div>
+                <div class="contenedor_preguntas">
+                    <div class="row pb-5">
+                        <div class="col-12">
+                            <div class="pregunta">
+                                <p class="enunciado">
+                                    {{ indexPreguntaActual + 1 }})
+                                    {{ preguntaActual.e }}
+                                </p>
+                                <div class="row">
+                                    <div
+                                        class="col-md-3 opcion"
+                                        v-for="(
+                                            item_o, index_o
+                                        ) in preguntaActual.o"
+                                        @click="verificaOpcion(index_o)"
+                                    >
+                                        <span
+                                            v-text="getInciso(index_o)"
+                                        ></span>
+                                        {{ item_o }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="boton btn-volver" @click="volverInicio">
+                        <i class="fa fa-arrow-left"></i> Volver
+                    </button>
+                    <button
+                        class="boton btn-finalizar bg-rojo"
+                        @click="finalizarJuego"
+                    >
+                        <i class="fa fa-flag"></i> Finalizar
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -93,6 +232,56 @@ onBeforeUnmount(() => {});
     width: 100%;
 }
 
+.bg-tablero {
+    background-color: #864a04;
+    color: white;
+}
+.txt-tablero {
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    z-index: 100;
+    font-weight: bold;
+    font-size: 1.8em;
+}
+
+.puntaje_juego {
+    position: absolute;
+    padding: 5px;
+    left: 0px;
+    top: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-right: double 3px #ffbb00;
+    border-bottom: double 3px #ffbb00;
+}
+
+.temporizador {
+    position: absolute;
+    padding: 5px;
+    padding-right: 15px;
+    right: 0px;
+    top: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-left: double 3px #ffbb00;
+    border-bottom: double 3px #ffbb00;
+}
+
+.img_temporizador {
+    width: 40px;
+}
+
+.txt_temporizador {
+    text-align: center;
+    width: 20px;
+}
+
+.txt_temporizador.red {
+    color: red;
+}
+
 /* INICIO */
 .listado_aprendizajes {
     margin-top: 20px;
@@ -105,19 +294,46 @@ onBeforeUnmount(() => {});
 
 /* JUEGO */
 .btn-volver {
-    position: fixed;
+    position: absolute;
     left: 20px;
+    bottom: 20px;
+}
+.btn-finalizar {
+    position: absolute;
+    right: 20px;
     bottom: 20px;
 }
 
 .contenedor_animacion {
-    background-color: black;
+    position: relative;
+    background-color: rgb(8, 8, 8);
     width: 100%;
     min-height: 400px;
 }
 .contenedor_preguntas {
-    background-color: green;
+    position: relative;
+    background-color: rgb(2, 14, 2);
     min-height: 200px;
+}
+
+.pregunta {
+    border-radius: solid 2px brown;
+    padding: 20px;
+}
+
+.enunciado {
+    font-weight: bold;
+}
+
+.enunciado,
+.opcion {
+    font-size: 1.5em;
+    color: white;
+}
+
+.opcion:hover {
+    color: coral;
+    cursor: pointer;
 }
 
 a.boton {
@@ -132,6 +348,16 @@ a.boton {
     color: black;
     background-color: rgb(72, 253, 17);
     border: solid 3px rgb(2, 131, 34);
+}
+
+.bg-rojo {
+    color: rgb(243, 243, 243);
+    background-color: rgb(240, 60, 6);
+    border: solid 3px rgb(231, 1, 1);
+}
+
+.bg-rojo:hover {
+    background-color: rgb(218, 55, 5);
 }
 
 .bg-verde:hover {
