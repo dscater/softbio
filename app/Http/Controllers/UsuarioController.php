@@ -63,6 +63,10 @@ class UsuarioController extends Controller
             $usuarios = $usuarios->where("tipo", $request->tipo);
         }
 
+        if (Auth::user()->tipo == 'PROFESOR') {
+            $usuarios = $usuarios->where("curso_id", Auth::user()->curso_id);
+        }
+
         if ($request->order && $request->order == "desc") {
             $usuarios->orderBy("users.id", "desc");
         }

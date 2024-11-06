@@ -7,7 +7,7 @@ const breadbrums = [
         name_url: "inicio",
     },
     {
-        title: "Reporte Usuarios",
+        title: "Reporte Lista de Estudiantes",
         disabled: false,
         url: "",
         name_url: "",
@@ -22,8 +22,7 @@ import { Head, usePage } from "@inertiajs/vue3";
 
 const { setLoading } = useApp();
 
-const cargarListas = () => {
-};
+const cargarListas = () => {};
 
 onMounted(() => {
     cargarListas();
@@ -53,7 +52,7 @@ const listTipos = ref([
 
 const generarReporte = () => {
     generando.value = true;
-    const url = route("reportes.r_usuarios", form.value);
+    const url = route("reportes.r_estudiantes", form.value);
     window.open(url, "_blank");
     setTimeout(() => {
         generando.value = false;
@@ -61,15 +60,15 @@ const generarReporte = () => {
 };
 </script>
 <template>
-    <Head title="Reporte Usuarios"></Head>
+    <Head title="Reporte Lista de Estudiantes"></Head>
     <!-- BEGIN breadcrumb -->
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="javascript:;">Inicio</a></li>
-        <li class="breadcrumb-item active">Reportes > Usuarios</li>
+        <li class="breadcrumb-item active">Reportes > Lista de Estudiantes</li>
     </ol>
     <!-- END breadcrumb -->
     <!-- BEGIN page-header -->
-    <h1 class="page-header">Reportes > Usuarios</h1>
+    <h1 class="page-header">Reportes > Lista de Estudiantes</h1>
     <!-- END page-header -->
     <div class="row">
         <div class="col-md-6 mx-auto">
@@ -77,29 +76,6 @@ const generarReporte = () => {
                 <div class="card-body">
                     <form @submit.prevent="generarReporte">
                         <div class="row">
-                            <div class="col-md-12">
-                                <label>Seleccionar tipo de usuario*</label>
-                                <select
-                                    :hide-details="
-                                        form.errors?.tipo ? false : true
-                                    "
-                                    :error="form.errors?.tipo ? true : false"
-                                    :error-messages="
-                                        form.errors?.tipo
-                                            ? form.errors?.tipo
-                                            : ''
-                                    "
-                                    v-model="form.tipo"
-                                    class="form-control"
-                                >
-                                    <option
-                                        v-for="item in listTipos"
-                                        :value="item.value"
-                                    >
-                                        {{ item.label }}
-                                    </option>
-                                </select>
-                            </div>
                             <div class="col-md-12 text-center mt-3">
                                 <button
                                     class="btn btn-primary"

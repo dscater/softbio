@@ -16,14 +16,17 @@ const breadbrums = [
 </script>
 <script setup>
 import { useApp } from "@/composables/useApp";
-import { Head, Link } from "@inertiajs/vue3";
+import { Head, Link, usePage } from "@inertiajs/vue3";
 import { useMaterials } from "@/composables/materials/useMaterials";
 import { initDataTable } from "@/composables/datatable.js";
 import { ref, onMounted, onBeforeUnmount } from "vue";
 import PanelToolbar from "@/Components/PanelToolbar.vue";
 // import { useMenu } from "@/composables/useMenu";
 import Formulario from "./Formulario.vue";
+import Ver from "./Ver.vue";
 // const { mobile, identificaDispositivo } = useMenu();
+const { props: props_page } = usePage();
+const user = ref(props_page.auth?.user);
 const { setLoading } = useApp();
 onMounted(() => {
     setTimeout(() => {
@@ -50,24 +53,28 @@ const columns = [
         title: "ACCIONES",
         data: null,
         render: function (data, type, row) {
-            return `
-                <button class="mx-0 rounded-0 btn btn-warning editar" data-id="${
-                    row.id
-                }"><i class="fa fa-edit"></i></button>
-                <button class="mx-0 rounded-0 btn btn-danger eliminar"
+            let buttons = `<button class="mx-0 rounded-0 btn btn-info ver" data-id="${row.id}"><i class="fa fa-eye"></i></button> `;
+            if (user.value.permisos.includes("materials.edit")) {
+                buttons += `<button class="mx-0 rounded-0 btn btn-warning editar" data-id="${row.id}"><i class="fa fa-edit"></i></button>`;
+            }
+            if (user.value.permisos.includes("materials.destroy")) {
+                buttons += `  <button class="mx-0 rounded-0 btn btn-danger eliminar"
                  data-id="${row.id}" 
                  data-nombre="${row.materia.nombre}" 
                  data-url="${route(
                      "materials.destroy",
                      row.id
-                 )}"><i class="fa fa-trash"></i></button>
-            `;
+                 )}"><i class="fa fa-trash"></i></button>`;
+            }
+            return buttons;
         },
     },
 ];
 const loading = ref(false);
 const accion_dialog = ref(0);
 const open_dialog = ref(false);
+const accion_dialog_ver = ref(0);
+const open_dialog_ver = ref(false);
 
 const agregarRegistro = () => {
     limpiarMaterial();
@@ -76,6 +83,16 @@ const agregarRegistro = () => {
 };
 
 const accionesRow = () => {
+    // ver
+    $("#table-material").on("click", "button.ver", function (e) {
+        e.preventDefault();
+        let id = $(this).attr("data-id");
+        axios.get(route("materials.show", id)).then((response) => {
+            setMaterial(response.data);
+            accion_dialog_ver.value = 1;
+            open_dialog_ver.value = true;
+        });
+    });
     // editar
     $("#table-material").on("click", "button.editar", function (e) {
         e.preventDefault();
@@ -156,6 +173,7 @@ onBeforeUnmount(() => {
                 <div class="panel-heading">
                     <h4 class="panel-title btn-nuevo">
                         <button
+                            v-if="user.permisos.includes('materials.create')"
                             type="button"
                             class="btn btn-primary"
                             @click="agregarRegistro"
@@ -198,4 +216,10 @@ onBeforeUnmount(() => {
         @envio-formulario="updateDatatable"
         @cerrar-dialog="open_dialog = false"
     ></Formulario>
+    <Ver
+        :open_dialog="open_dialog_ver"
+        :accion_dialog="accion_dialog_ver"
+        @envio-formulario=""
+        @cerrar-dialog="open_dialog_ver = false"
+    ></Ver>
 </template>

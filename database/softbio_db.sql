@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 31-10-2024 a las 17:18:51
+-- Tiempo de generación: 06-11-2024 a las 20:44:22
 -- Versión del servidor: 8.0.30
 -- Versión de PHP: 8.2.22
 
@@ -35,6 +35,14 @@ CREATE TABLE `aprendizajes` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `aprendizajes`
+--
+
+INSERT INTO `aprendizajes` (`id`, `user_id`, `puntaje`, `created_at`, `updated_at`) VALUES
+(1, 5, 150, '2024-11-06 22:49:28', '2024-11-06 23:01:45'),
+(2, 4, 55, '2024-11-06 23:14:10', '2024-11-06 23:14:10');
+
 -- --------------------------------------------------------
 
 --
@@ -62,7 +70,7 @@ CREATE TABLE `configuracions` (
 --
 
 INSERT INTO `configuracions` (`id`, `nombre_sistema`, `alias`, `razon_social`, `ciudad`, `dir`, `fono`, `correo`, `web`, `actividad`, `logo`, `created_at`, `updated_at`) VALUES
-(1, 'SOFTBIO', 'SB', 'SOFTBIO S.A.', 'LA PAZ', 'LOS OLIVOS', '222222', 'softbio@gmail.com', 'softbio.com', 'ACTIVIDAD', '1730298092_1.png', NULL, '2024-10-30 18:21:32');
+(1, 'SOFTBIO', 'SB', 'SOFTBIO S.A.', 'LA PAZ', 'LOS OLIVOS', '222222', 'softbio@gmail.com', 'softbio.com', 'ACTIVIDAD', '1730735405_1.jpg', NULL, '2024-11-04 19:50:05');
 
 -- --------------------------------------------------------
 
@@ -335,7 +343,7 @@ INSERT INTO `users` (`id`, `nombre`, `paterno`, `materno`, `ci`, `ci_exp`, `emai
 (5, 'CARLOS', 'CHOQUE', 'MAMANI', '4444', 'CB', 'carlos@gmail.com', '$2y$12$JkAwVYMtNJy9UFwQv6RxAOq/jONkgTn2CiIHuGJQfSvztvmrO6.sW', 'ESTUDIANTE', NULL, '2024-10-30', 1, 1, '2024-10-30 19:02:02', '2024-10-31 18:42:30'),
 (6, 'ELVIS', 'MAMANI', 'MAMANI', '55555', 'LP', 'elvis@gmail.com', '$2y$12$tNAY1SfzaAgOubTFXDapOOCfeT.cQ/IkOwvaBYNItrtqemPft4UCu', 'ESTUDIANTE', NULL, '2024-10-30', 1, 1, '2024-10-30 19:02:21', '2024-10-30 19:02:57'),
 (7, 'MARIA', 'MAMANI', 'SOLIZ', '1212', 'LP', 'maria@gmail.com', '$2y$12$Zby7HK96VjwbYcG9PbwhZud0qQBrjLf75L1Ger1ZSO2rGFFoHP1JK', 'PROFESOR', NULL, '2024-10-30', 1, 3, '2024-10-30 19:02:43', '2024-10-30 19:02:43'),
-(8, 'PABLO', 'SUAREZ', 'MAMANI', '2121', 'CB', 'pablo@gmail.com', '$2y$12$QcTuK5kdIh/uflN8YnrS0.OfgBV3/9ltOBA.Jfo5GwDvyYezF4fnC', 'ESTUDIANTE', NULL, '2024-10-30', 1, 1, '2024-10-30 19:03:29', '2024-10-30 19:03:29');
+(8, 'PABLO', 'SUAREZ', 'MAMANI', '2121', 'CB', 'pablo@gmail.com', '$2y$12$QcTuK5kdIh/uflN8YnrS0.OfgBV3/9ltOBA.Jfo5GwDvyYezF4fnC', 'ESTUDIANTE', NULL, '2024-10-30', 1, 2, '2024-10-30 19:03:29', '2024-10-30 19:03:29');
 
 --
 -- Índices para tablas volcadas
@@ -420,7 +428,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `aprendizajes`
 --
 ALTER TABLE `aprendizajes`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `configuracions`

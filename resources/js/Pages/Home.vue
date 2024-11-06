@@ -8,17 +8,87 @@ import { useApp } from "@/composables/useApp";
 // componentes
 import { useConfiguracion } from "@/composables/configuracion/useConfiguracion";
 import { usePage, Head, Link } from "@inertiajs/vue3";
+
+import Highcharts from "highcharts";
+import exporting from "highcharts/modules/exporting";
+
+exporting(Highcharts);
+Highcharts.setOptions({
+    lang: {
+        downloadPNG: "Descargar PNG",
+        downloadJPEG: "Descargar JPEG",
+        downloadPDF: "Descargar PDF",
+        downloadSVG: "Descargar SVG",
+        printChart: "Imprimir gráfico",
+        contextButtonTitle: "Menú de exportación",
+        viewFullscreen: "Pantalla completa",
+        exitFullscreen: "Salir de pantalla completa",
+    },
+});
+
 const props_page = defineProps({
     array_infos: {
         type: Array,
     },
 });
 
+const generarReporte2 = () => {
+    axios.get(route("reportes.rg_aprendizajes")).then((response) => {
+        // Create the chart
+        Highcharts.chart("container", {
+            chart: {
+                type: "column",
+            },
+            title: {
+                align: "center",
+                text: "Ranking de juego",
+            },
+            subtitle: {
+                align: "left",
+                text: "",
+            },
+            accessibility: {
+                announceNewData: {
+                    enabled: true,
+                },
+            },
+            xAxis: {
+                type: "category",
+            },
+            yAxis: {
+                title: {
+                    text: "Total Pts.",
+                },
+            },
+            legend: {
+                enabled: true,
+            },
+            plotOptions: {
+                series: {
+                    borderWidth: 0,
+                    dataLabels: {
+                        enabled: true,
+                    },
+                },
+            },
+
+            series: [
+                {
+                    name: "Usuario",
+                    data: response.data.data,
+                    colorByPoint: true,
+                },
+            ],
+        });
+    });
+};
+
 const { setLoading } = useApp();
 onMounted(() => {
     setTimeout(() => {
         setLoading(false);
     }, 300);
+    generarReporte2();
 });
 const { oConfiguracion } = useConfiguracion();
 
@@ -59,6 +129,7 @@ const { props } = usePage();
                 </div>
             </div>
         </div>
+        <div class="col-12" id="container"></div>
     </div>
 </template>
 <style scoped>

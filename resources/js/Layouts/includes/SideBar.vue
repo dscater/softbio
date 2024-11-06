@@ -546,7 +546,9 @@ const logout = () => {
                                 <Link
                                     :href="route('aprendizajes.puntajesCurso')"
                                     class="menu-link"
-                                    ><div class="menu-text">Ver puntajes curso</div></Link
+                                    ><div class="menu-text">
+                                        Ver puntajes curso
+                                    </div></Link
                                 >
                             </div>
                         </div>
@@ -646,7 +648,13 @@ const logout = () => {
                     class="menu-item has-sub"
                     v-if="
                         user_logeado.permisos.includes('reportes.usuarios') ||
-                        user_logeado.permisos.includes('reportes.productos')
+                        user_logeado.permisos.includes(
+                            'reportes.estudiantes'
+                        ) ||
+                        user_logeado.permisos.includes(
+                            'reportes.evaluacions'
+                        ) ||
+                        user_logeado.permisos.includes('reportes.aprendizajes')
                     "
                 >
                     <a href="javascript:;" class="menu-link">
@@ -656,13 +664,13 @@ const logout = () => {
                         <div class="menu-text">Reportes</div>
                         <div class="menu-caret"></div>
                     </a>
-                    <div class="menu-submenu">
+                    <div
+                        class="menu-submenu"
+                        v-if="
+                            user_logeado.permisos.includes('reportes.usuarios')
+                        "
+                    >
                         <div
-                            v-if="
-                                user_logeado.permisos.includes(
-                                    'reportes.usuarios'
-                                )
-                            "
                             class="menu-item"
                             :class="[
                                 route_current == 'reportes.usuarios'
@@ -674,6 +682,79 @@ const logout = () => {
                                 :href="route('reportes.usuarios')"
                                 class="menu-link"
                                 ><div class="menu-text">Usuarios</div></Link
+                            >
+                        </div>
+                    </div>
+                    <div
+                        class="menu-submenu"
+                        v-if="
+                            user_logeado.permisos.includes(
+                                'reportes.estudiantes'
+                            )
+                        "
+                    >
+                        <div
+                            class="menu-item"
+                            :class="[
+                                route_current == 'reportes.estudiantes'
+                                    ? 'active'
+                                    : '',
+                            ]"
+                        >
+                            <Link
+                                :href="route('reportes.estudiantes')"
+                                class="menu-link"
+                                ><div class="menu-text">
+                                    Lista de Estudiantes
+                                </div></Link
+                            >
+                        </div>
+                    </div>
+                    <div
+                        class="menu-submenu"
+                        v-if="
+                            user_logeado.permisos.includes(
+                                'reportes.evaluacions'
+                            )
+                        "
+                    >
+                        <div
+                            class="menu-item"
+                            :class="[
+                                route_current == 'reportes.evaluacions'
+                                    ? 'active'
+                                    : '',
+                            ]"
+                        >
+                            <Link
+                                :href="route('reportes.evaluacions')"
+                                class="menu-link"
+                                ><div class="menu-text">Evaluación</div></Link
+                            >
+                        </div>
+                    </div>
+                    <div
+                        class="menu-submenu"
+                        v-if="
+                            user_logeado.permisos.includes(
+                                'reportes.aprendizajes'
+                            )
+                        "
+                    >
+                        <div
+                            class="menu-item"
+                            :class="[
+                                route_current == 'reportes.aprendizajes'
+                                    ? 'active'
+                                    : '',
+                            ]"
+                        >
+                            <Link
+                                :href="route('reportes.aprendizajes')"
+                                class="menu-link"
+                                ><div class="menu-text">
+                                    Ranking del juego
+                                </div></Link
                             >
                         </div>
                     </div>

@@ -3,17 +3,17 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Usuarios</title>
+    <title>RankingJuego</title>
     <style type="text/css">
         * {
             font-family: sans-serif;
         }
 
         @page {
-            margin-top: 1.5cm;
-            margin-bottom: 0.3cm;
-            margin-left: 0.3cm;
-            margin-right: 0.3cm;
+            margin-top: 1cm;
+            margin-bottom: 1cm;
+            margin-left: 2cm;
+            margin-right: 1cm;
         }
 
         table {
@@ -31,11 +31,11 @@
         }
 
         table thead tr th {
-            font-size: 7pt;
+            font-size: 9pt;
         }
 
         table tbody tr td {
-            font-size: 6pt;
+            font-size: 7.5pt;
         }
 
 
@@ -155,43 +155,28 @@
         <h2 class="titulo">
             {{ $configuracion->first()->razon_social }}
         </h2>
-        <h4 class="texto">LISTA DE USUARIOS</h4>
+        <h4 class="texto">RANKING DE JUEGO</h4>
         <h4 class="fecha">Expedido: {{ date('d-m-Y') }}</h4>
     </div>
     <table border="1">
         <thead class="bg-principal">
             <tr>
                 <th width="3%">N°</th>
-                <th width="5%">FOTO</th>
-                <th>PATERNO</th>
-                <th>MATERNO</th>
-                <th>NOMBRE(S)</th>
-                <th>C.I.</th>
-                <th>CORREO</th>
-                <th>TIPO</th>
-                <th>ACCESO</th>
-                <th width="9%">FECHA DE REGISTRO</th>
+                <th>NOMBRE COMPLETO</th>
+                <th>CURSO</th>
+                <th width="9%">PUNTAJE</th>
             </tr>
         </thead>
         <tbody>
             @php
                 $cont = 1;
             @endphp
-            @foreach ($usuarios as $user)
+            @foreach ($aprendizajes as $aprendizaje)
                 <tr>
                     <td class="centreado">{{ $cont++ }}</td>
-                    <td class="img_celda centreado">
-                        <img src="{{ $user->foto_b64 }}" alt="Foto">
-
-                    </td>
-                    <td class="">{{ $user->paterno }}</td>
-                    <td class="">{{ $user->materno }}</td>
-                    <td class="">{{ $user->nombre }}</td>
-                    <td class="">{{ $user->full_ci }}</td>
-                    <td class="">{{ $user->email }}</td>
-                    <td class="">{{ $user->tipo }}</td>
-                    <td class="centreado">{{ $user->acceso == 1 ? 'HABILITADO' : 'DENEGADO' }}</td>
-                    <td class="centreado">{{ $user->fecha_registro_t }}</td>
+                    <td class="">{{ $aprendizaje->user->full_name }}</td>
+                    <td class="">{{ $aprendizaje->user->curso->nombre }}</td>
+                    <td class="centreado">{{ $aprendizaje->puntaje }}</td>
                 </tr>
             @endforeach
         </tbody>

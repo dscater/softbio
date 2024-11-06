@@ -35,16 +35,33 @@ class UserController extends Controller
             "configuracions.destroy",
 
             "reportes.usuarios",
+            "reportes.estudiantes",
+            "reportes.evaluacions",
+            "reportes.aprendizajes",
+
         ],
         "PROFESOR" => [
             "evaluacions.index",
-            
+
             "aprendizajes.index",
+
+            "materials.index",
+            "materials.create",
+            "materials.edit",
+            "materials.destroy",
+
+            "reportes.estudiantes",
+            "reportes.evaluacions",
+            "reportes.aprendizajes",
         ],
         "ESTUDIANTE" => [
             "evaluacions.edit",
 
             "aprendizajes.index",
+
+            "materials.index",
+
+            "reportes.aprendizajes",
         ],
     ];
 
