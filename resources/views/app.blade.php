@@ -30,8 +30,11 @@
     <!-- ================== END page-css ================== -->
 
 
+    <script src="https://cdn.jsdelivr.net/npm/gifler/gifler.min.js"></script>
     <script>
         var url_assets = "{{ asset('') }}";
+        var audioFondo = new Audio();
+        audioFondo.src = url_assets + "sounds/Woodlandfantasy.mp3";
     </script>
     <script src="{{ asset('assets/js/preguntas.js') }}"></script>
 

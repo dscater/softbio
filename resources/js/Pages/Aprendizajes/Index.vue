@@ -6,6 +6,15 @@ import { Head, Link } from "@inertiajs/vue3";
 import { ref, onMounted, onBeforeUnmount } from "vue";
 import Juego from "@/Pages/Aprendizajes/Juevo.vue";
 
+if (!audioFondo.played) {
+    audioFondo.play();
+} else {
+    audioFondo.currentTime = 0;
+    audioFondo.play();
+}
+audioFondo.loop = true;
+
+const urlassets = ref(url_assets);
 const listAprendizajes = ref([]);
 const urlasset = ref(url_assets);
 const loading = ref(false);
@@ -15,6 +24,8 @@ const tiempoPorPregunta = ref(60);
 const tiempoPregunta = ref(tiempoPorPregunta.value);
 const puntajePorPregunta = ref(5);
 const aumentaPuntajeCada = ref(10);
+const loadingPregunta = ref(false);
+const swRespCorrecta = ref(null);
 const contPreguntasRespondidas = ref(0);
 const listPreguntas = ref(preguntas.flatMap((tema) => tema.p));
 const indexPreguntaActual = ref(0);
@@ -24,6 +35,8 @@ const iniciarJuego = () => {
     jugando.value = true;
     conteoDeTiempo();
 };
+
+const modalFinalizar = ref(false);
 
 const conteoDeTiempo = () => {
     intervalTiempoJuego.value = setInterval(() => {
@@ -49,13 +62,25 @@ const cargaListAprendizajes = () => {
     });
 };
 
+var audioerror = new Audio();
+audioerror.src = urlassets.value + "sounds/error.mp3";
+
 // JUEGO
 const verificaOpcion = (index_opcion) => {
     if (preguntaActual.value.r === index_opcion) {
         console.log("Correcto");
         puntaje.value += parseInt(puntajePorPregunta.value);
+        swRespCorrecta.value = true;
     } else {
+        swRespCorrecta.value = false;
+        loadingPregunta.value = false;
         console.log("Incorrecto");
+        if (!audioerror.played) {
+            audioerror.play();
+        } else {
+            audioerror.currentTime = 0;
+            audioerror.play();
+        }
     }
     contPreguntasRespondidas.value++;
     // verificar total preguntas para aumentar el puntaje
@@ -66,7 +91,16 @@ const verificaOpcion = (index_opcion) => {
     actualizaPregunta();
 };
 
+const reiniciaSwRespuesta = () => {
+    swRespCorrecta.value = false;
+    loadingPregunta.value = false;
+};
+
 const actualizaPregunta = () => {
+    loadingPregunta.value = true;
+    if (!swRespCorrecta.value) {
+        loadingPregunta.value = false;
+    }
     indexPreguntaActual.value++;
     if (!listPreguntas.value[indexPreguntaActual.value]) {
         console.log("Termina el juego");
@@ -88,8 +122,10 @@ const getInciso = (index) => {
 };
 
 const volverInicio = () => {
+    modalFinalizar.value = false;
     jugando.value = false;
     reiniciaJuego();
+    cargarListas();
 };
 
 const reiniciaJuego = () => {
@@ -104,8 +140,23 @@ const reiniciaJuego = () => {
 
 const finalizarJuego = () => {
     finalizaConteo();
-    console.log("finaliza");
-    volverInicio();
+    axios
+        .post(route("aprendizajes.store"), {
+            puntaje: puntaje.value,
+        })
+        .then((response) => {
+            modalFinalizar.value = true;
+            console.log("finaliza");
+        })
+        .catch((error) => {
+            Swal.fire({
+                icon: "info",
+                title: "Error",
+                text: `Ocurrió un error inesperado por lo que no se pudo guardar el puntaje`,
+                confirmButtonColor: "#3085d6",
+                confirmButtonText: `Aceptar`,
+            });
+        });
 };
 
 // FIN JUEGO
@@ -116,24 +167,54 @@ onMounted(() => {
 onBeforeUnmount(() => {});
 </script>
 <template>
-    <div class="container-fluid contenedor_juego">
+    <div
+        class="container-fluid contenedor_juego"
+        :style="{
+            backgroundImage: 'url(' + urlassets + 'imgs/fondoAprendizaje.jpg)',
+        }"
+    >
         <div class="row">
             <div class="col-12" v-show="!jugando">
                 <div class="listado_aprendizajes col-md-6 mx-auto text-center">
-                    <h4 class="text-center font-weight-bold">
+                    <h3 class="text-center font-weight-bold">
                         Mejores puntajes
-                    </h4>
-                    <template v-if="listAprendizajes.length > 0">
-                        <div
-                            class="elem_listado"
-                            v-for="(item, index) in listAprendizajes"
-                        >
-                            {{ index + 1 }}){{ item.user.full_name }}
-                        </div>
-                    </template>
-                    <template v-else>
-                        <span class="vacio">Sin registros...</span>
-                    </template>
+                    </h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="text-white">N°</th>
+                                <th class="text-white">Nombre</th>
+                                <th class="text-white">Curso</th>
+                                <th class="text-white">Puntaje</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template v-if="listAprendizajes.length > 0">
+                                <tr
+                                    class="elem_listado"
+                                    v-for="(item, index) in listAprendizajes"
+                                >
+                                    <td class="text-white">{{ index + 1 }})</td>
+                                    <td class="text-white">
+                                        {{ item.user.full_name }}
+                                    </td>
+                                    <td class="text-white">
+                                        {{ item.user.curso.nombre }}
+                                    </td>
+                                    <td class="text-white">
+                                        {{ item.puntaje }}
+                                    </td>
+                                </tr>
+                            </template>
+                            <template v-else>
+                                <tr>
+                                    <td class="vacio text-white" colspan="4">
+                                        Sin registros...
+                                    </td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
                 </div>
                 <div class="col-md-6 mx-auto pt-1">
                     <button
@@ -169,10 +250,18 @@ onBeforeUnmount(() => {});
                             v-text="tiempoPregunta"
                         ></span>
                     </div>
-                    <Juego :estadoJuego="jugando"></Juego>
+                    <Juego
+                        :estadoJuego="jugando"
+                        :puntajeActual="puntajePorPregunta"
+                        :respCorrecta="swRespCorrecta"
+                        @actualizaEstadoRespuesta="reiniciaSwRespuesta"
+                    ></Juego>
                 </div>
                 <div class="contenedor_preguntas">
-                    <div class="row pb-5">
+                    <div class="loading_pregunta" v-show="loadingPregunta">
+                        <i class="fa fa-spinner fa-spin"></i>
+                    </div>
+                    <div class="row pb-5" v-if="preguntaActual">
                         <div class="col-12">
                             <div class="pregunta">
                                 <p class="enunciado">
@@ -209,12 +298,54 @@ onBeforeUnmount(() => {});
             </div>
         </div>
     </div>
+    <div
+        class="modal fade"
+        :class="{
+            show: modalFinalizar,
+        }"
+        id="modal-dialog-finalizar"
+        :style="{
+            display: modalFinalizar ? 'block' : 'none',
+        }"
+    >
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h4 class="modal-title">Juego finalizado</h4>
+                    <button
+                        type="button"
+                        class="btn-close"
+                        @click="volverInicio()"
+                    ></button>
+                </div>
+                <div class="modal-body bg-primary">
+                    <div class="row">
+                        <div class="col-12">
+                            <p class="txtPuntajeFinal text-white">
+                                <strong>Puntaje obtenido: </strong>{{ puntaje }}
+                            </p>
+                        </div>
+                        <div class="col-12">
+                            <button
+                                type="button"
+                                class="btn btn-warning bg-secundario w-100"
+                                @click="volverInicio()"
+                            >
+                                Aceptar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
 
 <style scoped>
 .contenedor_juego {
     min-height: 100vh;
-    background: rgb(75, 75, 73);
+    /* background: rgb(75, 75, 73); */
+    background-size: cover;
 }
 
 .boton {
@@ -316,6 +447,20 @@ onBeforeUnmount(() => {});
     min-height: 200px;
 }
 
+.loading_pregunta {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.603);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    padding-bottom: 80px;
+}
+
 .pregunta {
     border-radius: solid 2px brown;
     padding: 20px;
@@ -362,5 +507,15 @@ a.boton {
 
 .bg-verde:hover {
     background-color: rgb(79, 241, 38);
+}
+
+#modal-dialog-finalizar {
+    background-color: rgba(0, 0, 0, 0.753);
+}
+
+.txtPuntajeFinal {
+    text-align: center;
+    font-size: 2em;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 </style>

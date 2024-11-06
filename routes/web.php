@@ -93,6 +93,8 @@ Route::middleware('auth')->prefix("admin")->group(function () {
 
     // APRENDIZAJE
     Route::get("aprendizajes/api", [AprendizajeController::class, 'api'])->name("aprendizajes.api");
+    Route::get("aprendizajes/puntajesCurso", [AprendizajeController::class, 'puntajesCurso'])->name("aprendizajes.puntajesCurso");
+    Route::get("aprendizajes/listaPuntajes", [AprendizajeController::class, 'listaPuntajes'])->name("aprendizajes.listaPuntajes");
     Route::get("aprendizajes/paginado", [AprendizajeController::class, 'paginado'])->name("aprendizajes.paginado");
     Route::get("aprendizajes/listado", [AprendizajeController::class, 'listado'])->name("aprendizajes.listado");
     Route::get("aprendizajes/mejores", [AprendizajeController::class, 'mejores'])->name("aprendizajes.mejores");
