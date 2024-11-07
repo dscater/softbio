@@ -38,6 +38,7 @@ const moneda = {
     y: 150,
     radius: 20,
     color: "gold",
+    backgroundColor: "yellow",
     borderColor: "darkgoldenrod",
     puntos: valorPuntaje.value,
     animando: false, // Si la moneda está animando o no
@@ -46,6 +47,28 @@ const moneda = {
     speed: 1,
     xPosicionInicial: 0,
     yPosicionInicial: 0,
+    actualizarEstilo: function () {
+        // Cambiar el tamaño de la moneda en función de los puntos
+        let nuevo_radio = 20 + Math.floor(this.puntos / 5);
+        if (nuevo_radio < 30) {
+            this.radius = nuevo_radio; // Aumentar el tamaño de la moneda conforme crece el puntaje
+        }
+
+        // Cambiar el color de la moneda de amarillo a rojo
+        // El rojo aumenta con los puntos
+        const red = 255; // Aumentar el rojo conforme suben los puntos
+        // El verde se mantiene en un valor bajo para evitar el verde
+        // const green = Math.min(230, Math.floor((this.puntos / 5) * 30)); // El verde empieza a disminuir a medida que sube el rojo, pero sin llegar a cero
+        let green = parseInt(200 - this.puntos * 3); // El verde empieza a disminuir a medida que sube el rojo, pero sin llegar a cero
+        if (green < 0) {
+            green = 1;
+        }
+        // El azul se mantiene en cero para evitar tonos fríos
+        const blue = 0;
+
+        // Usar estos valores para el color de fondo
+        this.backgroundColor = `rgb(${red},${green},${blue})`;
+    },
     setEjeX: function (x) {
         this.x = x;
     },
@@ -56,6 +79,7 @@ const moneda = {
         this.yPosicionInicial = this.y;
     },
     dibujar: function (ctx, wc) {
+        this.actualizarEstilo();
         ctx.save();
         ctx.translate(this.x, this.y);
         ctx.scale(this.scale, this.scale); // Escala para la animación
@@ -79,13 +103,13 @@ const moneda = {
         // Crear la parte interna de la moneda (un efecto de profundidad)
         ctx.beginPath();
         ctx.arc(0, 0, this.radius - 4, 0, Math.PI * 2);
-        ctx.fillStyle = "yellow";
+        ctx.fillStyle = this.backgroundColor;
         ctx.fill();
 
         ctx.restore();
 
         // Mostrar puntos en la moneda
-        ctx.fillStyle = "rgba(225,0,225,255)";
+        ctx.fillStyle = "rgba(225,255,225,1)";
         ctx.font = "16px Arial";
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
@@ -243,18 +267,14 @@ watch(
             animationFrameId = null;
             personaje.src = urlassets.value + "imgs/aprendizaje/idle.gif";
         }
-    },
+    }
+);
+
+watch(
     () => props.puntajeActual,
     (newVal) => {
         valorPuntaje.value = newVal;
-    },
-    () => props.respCorrecta,
-    (newVal) => {
-        if (estadoRespuesta.value) {
-            objPersonaje.setEstadoPersonaje(1);
-        } else {
-            objPersonaje.setEstadoPersonaje(0);
-        }
+        moneda.puntos = valorPuntaje.value;
     }
 );
 

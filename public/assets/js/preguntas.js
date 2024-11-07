@@ -1,5 +1,5 @@
 var preguntas = [];
-fetch(url_assets + "assets/js/preguntas.json")
+fetch(url_assets + "assets/js/preguntas.json?t=" + Math.random() * 1000)
     .then((response) => response.json())
     .then((data) => {
         preguntas = data;

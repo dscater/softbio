@@ -74,6 +74,39 @@
                     "Es la cantidad de tiempo que tarda la luz en llegar desde el Sol hasta la Tierra"
                 ],
                 "r": 0
+            },
+            {
+                "nro": 8,
+                "e": "¿Cuál es la distancia media entre la Tierra y la Luna?",
+                "o": [
+                    "380 400 km (380 mil kilómetros).",
+                    "410 400 km (410 mil kilómetros).",
+                    "384 400 km (384 mil kilómetros).",
+                    "300 400 km (300 mil kilómetros)."
+                ],
+                "r": 2
+            },
+            {
+                "nro": 9,
+                "e": "¿Cómo se llama la Galaxia donde se encuentra el Sistema Solar?",
+                "o": [
+                    "Sistema Solar",
+                    "Andromeda",
+                    "La Vía Láctea.",
+                    "Universo"
+                ],
+                "r": 2
+            },
+            {
+                "nro": 10,
+                "e": "¿Qué es un año galáctico?",
+                "o": [
+                    "Es el tiempo que tarda la Tierra en girar una vez sobre su propio eje.",
+                    "Es el tiempo que tarda la Luna en completar una órbita alrededor de la Tierra.",
+                    "Es el tiempo que tarda la luz en viajar desde el Sol hasta la Tierra.",
+                    "Es el tiempo que tarda el Sol en completar una vuelta alrededor del centro de la Vía Láctea"
+                ],
+                "r": 3
             }
         ]
     },
@@ -102,6 +135,94 @@
                     "Las células animales tienen pared celular para protegerlas, mientras que las células vegetales no la necesitan"
                 ],
                 "r": 0
+            },
+            {
+                "nro": 3,
+                "e": "¿Qué es el código genético?",
+                "o": [
+                    "Es el lenguaje que utilizan las computadoras para comunicarse entre sí",
+                    "El material genético tiene su propio idioma. De forma sencilla, el orden de los AN que forma el ADN ofrece información, ya sea un gen o una secuencia de iniciación, por ejemplo",
+                    "Es el conjunto de leyes que rigen la estructura de las proteínas en el universo",
+                    "Es el código numérico que se usa para clasificar las especies en biología"
+                ],
+                "r": 1
+            },
+            {
+                "nro": 4,
+                "e": "¿Qué son las Proteínas?",
+                "o": [
+                    "Son moléculas de ADN encargadas de almacenar la información genética en las células.",
+                    "Son aminoácidos, fosfatos y otros, cumplen la función estructural, reguladora, algunas se comportan como enzimas (aceleran las reacciones bioquímicas) y hormonas (regular funciones vitales)",
+                    "Son lípidos que el cuerpo utiliza para almacenar energía a largo plazo.",
+                    "Son azúcares simples que proporcionan energía rápida al organismo"
+                ],
+                "r": 1
+            },
+            {
+                "nro": 5,
+                "e": "¿Qué es una especie endémica?",
+                "o": [
+                    "Una especie endémica es aquella que se encuentra exclusivamente en una determinada región geográfica y no de forma natural en otras áreas del mundo",
+                    "Es una especie que vive en todos los continentes del mundo",
+                    "Es una especie que migra constantemente y nunca permanece en un solo lugar",
+                    "Es una especie que solo se encuentra en zoológicos y parques temáticos"
+                ],
+                "r": 0
+            },
+            {
+                "nro": 6,
+                "e": "¿Qué es un nicho ecológico?",
+                "o": [
+                    "Un nicho ecológico es el papel o función que desempeña una especie dentro de su ecosistema, incluyendo su comportamiento, su alimentación y su interacción con otras especies",
+                    "Es el lugar físico donde una especie construye su nido o madriguera",
+                    "Es un espacio protegido dentro de un zoológico donde las especies pueden vivir de forma segura",
+                    "Es el tipo de clima específico que necesita una especie para sobrevivir"
+                ],
+                "r": 0
+            },
+            {
+                "nro": 7,
+                "e": "¿Qué es la selección natural?",
+                "o": [
+                    "Es el proceso mediante el cual los animales eligen a sus parejas de forma aleatoria",
+                    "Es una técnica de laboratorio utilizada para seleccionar las mejores características genéticas en plantas y animales",
+                    "Es la adaptación instantánea de una especie a un nuevo entorno sin necesidad de cambios evolutivos",
+                    "La selección natural es el proceso por el cual las características más favorables para la supervivencia y la reproducción se transmiten a las generaciones futuras, mientras que las desfavorables tienden a desaparecer"
+                ],
+                "r": 3
+            },
+            {
+                "nro": 8,
+                "e": "¿Qué es un ecosistema sostenible?",
+                "o": [
+                    "Es un ecosistema que no requiere ningún tipo de interacción humana para mantenerse",
+                    "Es un ecosistema que mantiene un equilibrio en el uso de sus recursos naturales, asegurando su regeneración a largo plazo sin agotar sus componentes esenciales",
+                    "Es un sistema en el que todas las especies compiten por los mismos recursos hasta que solo una sobrevive",
+                    "Es un ecosistema artificial creado exclusivamente en laboratorios y no puede existir en la naturaleza"
+                ],
+                "r": 1
+            },
+            {
+                "nro": 9,
+                "e": "¿Qué es el efecto invernadero?",
+                "o": [
+                    "Es el proceso por el cual la Tierra emite más calor al espacio y se enfría rápidamente",
+                    "Es un fenómeno donde las plantas generan calor por la fotosíntesis y calientan la atmósfera",
+                    "El efecto invernadero es un fenómeno natural por el cual ciertos gases en la atmósfera retienen parte del calor que irradia la Tierra, manteniendo una temperatura adecuada para la vida",
+                    "Es un sistema de calefacción utilizado en invernaderos para cultivar plantas en climas fríos"
+                ],
+                "r": 2
+            },
+            {
+                "nro": 10,
+                "e": "¿Qué es el metabolismo?",
+                "o": [
+                    "Es el proceso mediante el cual el cuerpo produce energía únicamente cuando está en reposo",
+                    "Es el sistema que controla los pensamientos y emociones en el cerebro",
+                    "El metabolismo hace referencia a todas las reacciones químicas o fisicoquímicas que llevan a cabo las células o los organismos",
+                    "Es el mecanismo por el cual las células se reproducen sin necesidad de nutrientes"
+                ],
+                "r": 2
             }
         ]
     },
@@ -130,6 +251,625 @@
                     "Taxonomía es el área de la biología que se encarga de analizar el comportamiento animal en su hábitat natural"
                 ],
                 "r": 2
+            },
+            {
+                "nro": 3,
+                "e": "¿Dominios se clasifica en?",
+                "o": [
+                    "Dominio animalia, Dominio plantae, Dominio fungi",
+                    "Dominio terrestre, Dominio marino, Dominio aéreo",
+                    "Dominio bacteria, Dominio archea, Dominio eucarya",
+                    "Dominio celular, Dominio multicelular, Dominio acelular"
+                ],
+                "r": 2
+            },
+            {
+                "nro": 4,
+                "e": "¿Cuál es la Importancia de la biodiversidad?",
+                "o": [
+                    "La importancia de la biodiversidad se refleja en los recursos o bienes y servicios ambientales o ecosistémicos que nos brinda, nos ayuda a entender el papel que desempeña cada especie en los diferentes ecosistemas, niveles tróficos, la dinámica entre la biocenosis (comunidades de seres vivos) y el biotopo (seres inertes naturales)",
+                    "La biodiversidad es importante porque garantiza que todos los animales y plantas vivan en grandes ciudades",
+                    "La biodiversidad es crucial para que los seres humanos puedan controlar el clima de manera más eficiente",
+                    "La biodiversidad solo es relevante para la industria farmacéutica, ya que proporciona recursos ilimitados para la fabricación de medicamentos"
+                ],
+                "r": 0
+            },
+            {
+                "nro": 5,
+                "e": "¿Qué es la célula?",
+                "o": [
+                    "Es la unidad morfológica y fisiológica de todo ser vivo, cada célula tiene vida propia, estructura organizada y son responsables de todas las funciones vitales de los organismos",
+                    "Es una parte del cuerpo humano que se encarga de la circulación de la sangre",
+                    "Es un tipo de tejido que forma los músculos del cuerpo",
+                    "Es una estructura rígida que solo se encuentra en plantas y se utiliza para almacenar agua"
+                ],
+                "r": 0
+            },
+            {
+                "nro": 6,
+                "e": "¿Qué es Citoesqueleto?",
+                "o": [
+                    "El citoesqueleto es un tipo de tejido que se encuentra únicamente en los músculos y permite el movimiento",
+                    "Es el armazón que sostiene a la célula, interviene en el movimiento de sustancias y orgánulos dentro de la célula, mantiene la forma celular y la posición de los orgánulos",
+                    "El citoesqueleto es una parte del núcleo celular encargada de almacenar el ADN",
+                    "El citoesqueleto es una capa externa que rodea las células vegetales y les da color"
+                ],
+                "r": 1
+            },
+            {
+                "nro": 7,
+                "e": "¿Cuál es el principio de la teoría celular?",
+                "o": [
+                    "Todas las células tienen una membrana celular que las hace impermeables a los nutrientes",
+                    "Las células son estructuras independientes que no interactúan con otras células ni forman tejidos",
+                    "Las células son capaces de generar energía sin necesidad de materiales orgánicos",
+                    "Toda célula proviene de otra célula preexistente, es capaz de dar continuidad a su especie a través del material genético que se transfiere de padres a hijos"
+                ],
+                "r": 3
+            },
+            {
+                "nro": 8,
+                "e": "¿Qué es El ciclo celular?",
+                "o": [
+                    "El ciclo celular es el proceso por el cual las células realizan fotosíntesis para generar energía",
+                    "El ciclo celular es el proceso en el que las células se dividen solo una vez a lo largo de su vida",
+                    "Es una serie de cambios que atraviesa una célula a lo largo de su existencia.",
+                    "El ciclo celular es un ciclo continuo de crecimiento que no implica la división de la célula"
+                ],
+                "r": 2
+            },
+            {
+                "nro": 9,
+                "e": "¿Como se produce el cáncer?",
+                "o": [
+                    "El cáncer se produce cuando las células dejan de dividirse por completo y dejan de realizar sus funciones normales",
+                    "El cáncer ocurre cuando el sistema inmune ataca las células saludables por error y las convierte en cancerígenas",
+                    "El cáncer es una enfermedad que se presenta cuando las células se multiplican sin control y se diseminan a los tejidos que las rodean. Los cambios en el ADN (ácido desoxirribonucleico) causan el cáncer. La mayoría de estos cambios que causan cáncer ocurren en los genes, que son trozos del ADN",
+                    "El cáncer se genera cuando las células mutan debido a la exposición exclusiva a la luz solar durante el día"
+                ],
+                "r": 2
+            }
+        ]
+    },
+    {
+        "nro": 4,
+        "t": "LA CÉLULA: UNIDAD ANATÓMICA, FUNCIONAL Y GENÉTICA PARA LA PRESERVACIÓN DE LA VIDA",
+        "p": [
+            {
+                "nro": 1,
+                "e": "¿Como surgio el surgimiento de una célula?",
+                "o": [
+                    "El surgimiento de una célula ocurrió cuando una célula artificial fue creada en un laboratorio por científicos",
+                    "La primera célula surgió cuando un organismo multicelular se dividió en partes más pequeñas y se aisló en una sola célula",
+                    "Las células surgieron por la fusión de elementos inorgánicos como piedras y agua en condiciones extremas",
+                    "No se sabe cómo apareció la primera célula en la Tierra, pero se acepta que su origen fue un fenómeno físico-químico. Esta visión llegó con las propuestas de A.I. Oparin y J.B.S. Haldane en torno a los años 20 del siglo XX (también fue sugerida por C. Darwin en una carta personal)"
+                ],
+                "r": 3
+            },
+            {
+                "nro": 2,
+                "e": "¿Como se ven las células?",
+                "o": [
+                    "Las células se ven a simple vista sin la necesidad de un microscopio debido a su gran tamaño",
+                    "Las células son visibles como pequeños puntos de color rojo brillante que se pueden observar en el aire",
+                    "Las células humanas son de tamaño microscópico; es decir, solo se pueden ver a través del microscopio. Sin embargo, su tamaño es muy variable. El óvulo (célula sexual femenina)",
+                    "Las células se ven como formas cuadradas flotando en el agua, sin ninguna estructura interna"
+                ],
+                "r": 2
+            },
+            {
+                "nro": 3,
+                "e": "¿Cuáles son las dos células qué existen?",
+                "o": [
+                    "Células sexuales o gametos, existen solo dos tipos: el óvulo (gameto femenino) y espermatozoide (gameto masculino)",
+                    "Las dos células que existen son las células cuadradas y las células triangulares",
+                    "Las dos células que existen son las células vegetales y las células acuáticas",
+                    "Las dos células que existen son las células rojas y las células azules"
+                ],
+                "r": 0
+            },
+            {
+                "nro": 4,
+                "e": "¿Cómo se mueve la célula?",
+                "o": [
+                    "Las células no se mueven en el vacío, sino que, apoyándose en otras células, tejidos y en la matriz extracelular. Entonces, ejercen fuerzas para empujarse y desplazarse. Esas fuerzas generan deformaciones y reacciones de todo el conjunto",
+                    "La célula se mueve a través de pequeñas alas que tiene en su superficie",
+                    "La célula se desplaza utilizando una red de hilos que la conectan con otras células",
+                    "La célula se mueve mediante el uso de pequeños motores que están dentro de su núcleo"
+                ],
+                "r": 0
+            },
+            {
+                "nro": 5,
+                "e": "¿Qué es El ciclo celular?",
+                "o": [
+                    "El ciclo celular es el proceso en el que las células producen energía mediante la fotosíntesis",
+                    "El ciclo celular ocurre solo en células de organismos unicelulares, no en organismos multicelulares",
+                    "El ciclo celular es el proceso en el que las células simplemente se dividen en dos partes iguales sin necesidad de crecimiento o diferenciación",
+                    "Es una serie de cambios que atraviesa una célula alo largo de su existencia. Tiene dos etapas: la primera es la interfase, se ocupa en crecer y desarrollarse, aumenta su tamaño, duplica su ADN, citoplasma y orgánulos. En la madurez inicia la división celular, ya sea por mitosis o meiosis, consiste en la duplicación y distribución del material genético que se encuentra en el núcleo celular. La etapa concluye con la citocinesis (división del citoplasma) que da origen a las células hijas diploides"
+                ],
+                "r": 3
+            },
+            {
+                "nro": 6,
+                "e": "¿Cómo es el aspecto de las células cancerosas?",
+                "o": [
+                    "Las células cancerosas tienen un aspecto perfectamente simétrico y se organizan de manera ordenada",
+                    "Cuando se observan al microscopio, las células cancerosas metastásicas en general se ven igual que las células del cáncer primario. Es más, las células cancerosas metastásicas y las células del cáncer primario suelen tener características moleculares en común, como cambios específicos en los cromosomas",
+                    "Las células cancerosas son transparentes y no tienen núcleo visible",
+                    "Las células cancerosas tienen un color brillante y se mueven rápidamente por el cuerpo sin formar tumores"
+                ],
+                "r": 1
+            },
+            {
+                "nro": 7,
+                "e": "¿Cómo influye el proceso de la mitosis en las células cancerosas?",
+                "o": [
+                    "Las células cancerosas se crean cuando se dañan los genes responsables de regular la división celular (mitosis). La carcinogénesis es causada por la mutación y epimutación del material genético de las células normales, lo que altera el equilibrio normal entre la proliferación y la muerte celular",
+                    "La mitosis acelera el proceso de envejecimiento en las células cancerosas, haciendo que se detengan antes de tiempo",
+                    "La mitosis en las células cancerosas ocurre de manera más ordenada, lo que las hace menos agresivas",
+                    "La mitosis en las células cancerosas no tiene ningún efecto y no contribuye a su crecimiento descontrolado"
+                ],
+                "r": 0
+            }   
+        ]
+    },
+    {
+        "nro": 5,
+        "t": "SEXUALIDAD HUMANA -INTEGRAL Y HOLÍSTICA",
+        "p": [
+            {
+                "nro": 1,
+                "e": "¿Qué entiendes por sexualidad humana integral?",
+                "o": [
+                    "La sexualidad humana integral se refiere únicamente a las relaciones sexuales entre adultos",
+                    "La sexualidad humana integral es un concepto que solo se aplica a las personas que están casadas",
+                    "La sexualidad humana integral implica únicamente la reproducción y no tiene en cuenta las emociones o los vínculos afectivos",
+                    "Es una condición previa para el ejercicio de la plena autonomía corporal y la toma de decisiones informadas sobre la salud y los derechos sexuales y reproductivos. Se basa en y promueve la comprensión de los derechos humanos universales, la igualdad de género y los derechos y el empoderamiento de los jóvenes"
+                ],
+                "r": 3
+            }, 
+            {
+                "nro": 2,
+                "e": "¿Qué es la sexología holística?",
+                "o": [
+                    "Los sexólogos clínicos holísticos son médicos clínicos que tienen una perspectiva sexual positiva y que toman en consideración factores biológicos, psicológicos, sociológicos, antropológicos e históricos al abordar cuestiones sexuales",
+                    "La sexología holística es una práctica que se enfoca exclusivamente en los aspectos físicos de la sexualidad sin considerar el bienestar emocional",
+                    "La sexología holística solo trata de la reproducción y no tiene en cuenta los aspectos emocionales o psicológicos de la sexualidad",
+                    "La sexología holística es una disciplina que se centra únicamente en el estudio de las enfermedades sexuales y su tratamiento"
+                ],
+                "r": 0
+            }, 
+            {
+                "nro": 3,
+                "e": "¿Qué es la sexualidad humana y holística?",
+                "o": [
+                    "Desde una perspectiva holística y positiva: La salud sexual consiste en el bienestar, y no meramente en la ausencia de enfermedad. La salud sexual implica el respeto, la seguridad y la libertad frente a la discriminación y la violencia. La salud sexual depende de goce de determinados derechos humanos",
+                    "La sexualidad humana y holística se refiere exclusivamente a las prácticas sexuales de diferentes culturas y no incluye aspectos emocionales o espirituales",
+                    "La sexualidad humana y holística es una técnica utilizada para controlar los deseos sexuales a través de métodos estrictamente físicos",
+                    "La sexualidad humana y holística implica solo el comportamiento sexual y no tiene nada que ver con las relaciones interpersonales o el desarrollo emocional"
+                ],
+                "r": 0
+            }, 
+            {
+                "nro": 4,
+                "e": "¿Cuáles son los cambios físicos en las mujeres?",
+                "o": [
+                    "Los cambios físicos en las mujeres incluyen el crecimiento de pelo",
+                    "En las mujeres crecen los senos y se redondean las caderas, aparece vello en el pubis y en las axilas, alrededor de dos años después de haberse iniciado este proceso aparece la menarca o primera menstruación",
+                    "Las mujeres experimentan un cambio físico que les permite cambiar de color de piel según sus emociones",
+                    "Los cambios físicos en las mujeres solo ocurren durante la adolescencia y no tienen efecto en la adultez"
+                ],
+                "r": 1
+            }, 
+            {
+                "nro": 5,
+                "e": "¿Cuáles son los cambios físicos en el hombre?",
+                "o": [
+                    "Durante la pubertad, los hombres desarrollan sus extremidades",
+                    "Los cambios físicos en los hombres incluyen el crecimiento de pelo",
+                    "Los hombres experimentan un cambio físico que les permite cambiar su altura de manera instantánea según su deseo",
+                    "En el hombre, los hombros y la espalda se ensanchan, aparece vello en el pubis, las axilas, la cara y a veces en el pecho, sin embargo, el desarrolló del vello facial y torácico puede darse hasta después de los 20 años. La voz se vuelve más grave, crecen los genitales, los testículos empiezan a producir espermatozoides y uno o dos años después de iniciado este proceso empiezan a eyacular"
+                ],
+                "r": 3
+            }, 
+            {
+                "nro": 6,
+                "e": "¿Qué es la Identidad de género?",
+                "o": [
+                    "La identidad de género es como nos identificamos, incluye la manera como somos, como nos comportamos, como pensamos, como nos percibimos",
+                    "La identidad de género es el sexo biológico que una persona tiene al nacer y no cambia a lo largo de su vida",
+                    "La identidad de género es cómo las personas se visten y eligen su color de cabello",
+                    "La identidad de género se refiere únicamente a la orientación sexual de una persona y no a cómo se sienten o se identifican"
+                ],
+                "r": 0
+            } 
+        ]
+    },
+    {
+        "nro": 6,
+        "t": "TRANSFORMACIÓN QUÍMICA Y SUSTENTABLE DE LA MATERIA",
+        "p": [
+            {
+                "nro": 1,
+                "e": "¿Qué es la transformación química de la materia?",
+                "o": [
+                    "La transformación química de la materia es cuando una sustancia cambia de color sin que se alteren sus propiedades",
+                    "La transformación química de la materia ocurre solo cuando una sustancia se congela o se derrite",
+                    "La transformación química de la materia implica la conversión de los sólidos en gases sin ninguna reacción",
+                    "Un cambio químico, o reacción química, es aquel proceso en el que una o más sustancias se transforman en nuevas sustancias con propiedades y composiciones diferentes. Este tipo de cambio ocurre a nivel molecular, donde los enlaces entre los átomos se rompen y se forman de nuevos, creando moléculas nuevas"
+                ],
+                "r": 3
+            },
+            {
+                "nro": 2,
+                "e": "¿Cuáles son las 3 transformaciones de la materia?",
+                "o": [
+                    "Sólido, líquido y gaseoso",
+                    "Evaporación, congelación y sublimación",
+                    "Mezcla, filtración y disolución",
+                    "Oxidación, combustión y cristaliación"
+                ],
+                "r": 0
+            },
+            {
+                "nro": 3,
+                "e": "¿Qué tipos de transformaciones se producen en la materia?",
+                "o": [
+                    "vaporización, fusión, solidificación, sublimación, sublimación inversa, ionización y desionización",
+                    "Las transformaciones de la materia incluyen solo la congelación y la evaporación, sin cambios en la estructura molecular",
+                    "Las transformaciones de la materia solo ocurren cuando se expone a la luz solar directa",
+                    "Las transformaciones en la materia son siempre reversibles y no afectan sus propiedades"
+                ],
+                "r": 0
+            },
+            {
+                "nro": 4,
+                "e": "¿Qué tipos de transformaciones se producen en la materia?",
+                "o": [
+                    "vaporización, fusión, solidificación, sublimación, sublimación inversa, ionización y desionización",
+                    "Las transformaciones de la materia incluyen solo la congelación y la evaporación, sin cambios en la estructura molecular",
+                    "Las transformaciones de la materia solo ocurren cuando se expone a la luz solar directa",
+                    "Las transformaciones en la materia son siempre reversibles y no afectan sus propiedades"
+                ],
+                "r": 0
+            },
+            {
+                "nro": 5,
+                "e": "¿Cómo podemos transformar la materia?",
+                "o": [
+                    "Evaporación; Ebullición o vaporización; Condensación: Licuefacción; Solidificación; Congelación; Fusión; Sublimación",
+                    "Podemos transformar la materia simplemente aplicando calor sin ningún otro cambio en las condiciones.",
+                    "La materia solo puede ser transformada mediante la magia o la intervención divina.",
+                    "La transformación de la materia solo ocurre cuando se mezcla con agua, sin necesidad de ningún otro proceso"
+                ],
+                "r": 0
+            },
+            {
+                "nro": 6,
+                "e": "¿Qué es la transformación en química?",
+                "o": [
+                    "La transformación en química es el proceso en el que las sustancias se mezclan sin cambiar sus propiedades",
+                    "La transformación en química ocurre solo cuando se calienta una sustancia a temperaturas extremadamente altas",
+                    "La transformación en química es el proceso en el que una sustancia se convierte en otra sin involucrar ninguna reacción química",
+                    "Una transformación o reacción químicas se produce cuando una o varias sustancias, llamadas REACTIVOS, se transforman, en determinadas condiciones, en nuevas sustancias, llamadas PRODUCTOS de reacción. Una reacción química se representa mediante una ecuación química"
+                ],
+                "r": 3
+            },
+            {
+                "nro": 7,
+                "e": "¿Cómo ocurre una reacción química?",
+                "o": [
+                    "Una reacción química ocurre cuando las moléculas simplemente se reorganizan sin ningún cambio en su composición",
+                    "Cuando las moléculas en movimiento se golpean entre sí, rompiendo sus enlaces y produciendo un intercambio de átomos que forman nuevos productos",
+                    "Una reacción química ocurre solo cuando se añade agua a las sustancias sin ningún tipo de calentamiento",
+                    "Una reacción química sucede únicamente cuando se expone una sustancia a la luz solar directa durante mucho tiempo"
+                ],
+                "r": 1
+            },
+            {
+                "nro": 8,
+                "e": "¿Cómo se transforma la materia de un cambio químico?",
+                "o": [
+                    "La materia se transforma en un cambio químico solo cuando se congela a temperaturas muy bajas",
+                    "Se produce un cambio químico la materia se transforma en otra diferente, es decir, aparecen nuevas sustancias. A los cambios químicos también se les llama reacciones químicas",
+                    "La materia se transforma en un cambio químico mediante la simple mezcla de dos sustancias sin que haya reacción alguna",
+                    "En un cambio químico, la materia se transforma cuando se expone a la electricidad sin necesidad de ninguna otra condición"
+                ],
+                "r": 1
+            },
+            {
+                "nro": 9,
+                "e": "¿Qué estudia la química?",
+                "o": [
+                    "La química estudia únicamente el comportamiento de los animales en su entorno natural",
+                    "La química estudia cómo las plantas crecen en el espacio exterior",
+                    "Es la ciencia que estudia la materia, la energía y sus cambios. El objeto de estudio de la Química son las sustancias y sus interacciones",
+                    "La química se encarga de estudiar las estrellas y los planetas del sistema solar"
+                ],
+                "r": 2
+            },
+            {
+                "nro": 10,
+                "e": "¿Cueles son las sustancias puras?",
+                "o": [
+                    "Las sustancias puras son aquellas que están formadas por un solo tipo de átomo o molécula, sin ninguna mezcla de otras sustancias. Ejemplos incluyen el oxígeno (O₂) y el agua destilada (H₂O).",
+                    "Las sustancias puras son aquellas que se pueden mezclar fácilmente con otras sin cambiar su composición",
+                    "Las sustancias puras son solo los elementos químicos en su forma gaseosa, como el nitrógeno (N₂)",
+                    "Las sustancias puras son las que siempre tienen un color específico y no cambian bajo ninguna circunstancia"
+                ],
+                "r": 0
+            }
+        ]
+    },
+    {
+        "nro": 7,
+        "t": "MATEMÁTICA APLICADA EN LAS CIENCIAS NATURALES",
+        "p": [
+            {
+                "nro": 1,
+                "e": "¿Cómo se relaciona la matemática con las ciencias naturales?",
+                "o": [
+                    "Las ciencias naturales, como la física, la química o la biología, soportan sus principios sobre las matemáticas, ya que ellas proporcionan el lenguaje formal para describir unívocamente sus fenómenos",
+                    "La matemática solo se utiliza en las ciencias naturales para contar y clasificar objetos sin tener ninguna aplicación en los experimentos.",
+                    "La matemática en las ciencias naturales es innecesaria, ya que los fenómenos naturales ocurren de manera aleatoria y no siguen patrones",
+                    "La matemática solo se utiliza en las ciencias naturales para crear gráficos y no tiene relación con las leyes que rigen los fenómenos naturales"
+                ],
+                "r": 0
+            },
+            {
+                "nro": 2,
+                "e": "¿Qué es la matemática aplicada a las ciencias naturales?",
+                "o": [
+                    "Son aquellos métodos y herramientas matemáticos que pueden ser utilizados en el análisis o resolución de problemas pertenecientes al área de las ciencias básicas o aplicadas, como el cálculo, el álgebra lineal, las ecuaciones",
+                    "La matemática aplicada a las ciencias naturales solo se usa para hacer predicciones sin necesidad de realizar experimentos o observaciones.",
+                    "La matemática aplicada a las ciencias naturales es un campo que se enfoca exclusivamente en la resolución de problemas teóricos sin conexión con la práctica",
+                    "La matemática aplicada a las ciencias naturales solo se utiliza para realizar cálculos en la astronomía y no tiene relevancia en otras disciplinas científicas"
+                ],
+                "r": 0
+            },
+            {
+                "nro": 3,
+                "e": "¿Cómo se aplican las matemáticas en la ciencia?",
+                "o": [
+                    "Las matemáticas se aplican en la ciencia solo para resolver ecuaciones complejas sin necesidad de experimentación o observación",
+                    "Las matemáticas se aplican en la ciencia exclusivamente para contar el número de átomos en una sustancia",
+                    "Las matemáticas se aplican en la ciencia solo para crear gráficos visuales, sin influencia en la interpretación de los fenómenos naturales",
+                    "Las matemáticas le han aportado a la ciencia su sentido crítico para desarrollar teorías y nuevos descubrimientos, como lo son; por ejemplo, las tecnologías de la comunicación y la información, que le deben a las matemáticas la humanización de su funcionamiento"
+                ],
+                "r": 3
+            },
+            {
+                "nro": 4,
+                "e": "¿Cómo se aplican las matemáticas en los fenómenos naturales?",
+                "o": [
+                    "Las matemáticas se aplican en los fenómenos naturales solo para calcular la cantidad de materia en una sustancia, sin considerar el comportamiento de las partículas",
+                    "Las matemáticas se aplican en los fenómenos naturales únicamente para predecir el clima, sin tener impacto en otras áreas como la biología o la física",
+                    "Los modelos matemáticos implementados permiten entender el comportamiento de elementos clave para el país, como el agua subterránea, el petróleo y la minería. Un área de especial interés para estos investigadores es el estudio de la contaminación de los acuíferos, en particular en la Ciudad de México y zonas mineras",
+                    "Las matemáticas se aplican en los fenómenos naturales solo para medir el tiempo, sin tener ninguna relación con otras magnitudes físicas o biológicas"
+                ],
+                "r": 2
+            },
+            {
+                "nro": 5,
+                "e": "¿Qué es La Física como ciencia?",
+                "o": [
+                    "La física como ciencia estudia cómo pintar cuadros y crear obras de arte",
+                    "La física como ciencia se encarga de estudiar las emociones y los sentimientos humanos",
+                    "La Física, deriva del griego Physis que significa realidad o naturaleza, esta ciencia es pura y dinámica, estudia las propiedades de la materia y energía, espacio, tiempo, movimiento, transformaciones y las fuerza que interactúan entre las partículas de los cuerpos, también busca conocer el origen de las diferentes formas de energía que existen en la naturaleza que generan fenómenos físicos ",
+                    "La física como ciencia solo se ocupa de la nutrición y el crecimiento de los seres vivos"
+                ],
+                "r": 2
+            },
+            {
+                "nro": 6,
+                "e": "¿Cómo se divide la física?",
+                "o": [
+                    "Física clásica, física moderna",
+                    "La física se divide en dos ramas: la física teórica y la física culinaria",
+                    "La física se divide en física espacial y física de mascotas",
+                    "La física se divide en física de las plantas y física de los insectos"
+                ],
+                "r": 0
+            },
+            {
+                "nro": 7,
+                "e": "¿Como se relaciona el Fenómenos físicos de la Madre Tierra y el universo? ",
+                "o": [
+                    "Son aquellos sucesos en que la materia no modifica su estructura química, no pierde sus propiedades ni se modifican, los cambios que experimenta afectan solo a su forma, energía, movimiento y estado, que puede acontecer en un espacio y tiempo determinado. Podemos encontrar fenómenos físicos tanto en la Madre Tierra como en el universo",
+                    "Los fenómenos físicos de la Madre Tierra y el universo están relacionados exclusivamente por la temperatura del agua en los océanos",
+                    "Los fenómenos físicos de la Madre Tierra y el universo se conectan a través de las estaciones del año, sin influir en ningún otro aspecto",
+                    "Los fenómenos físicos de la Madre Tierra y el universo solo están relacionados por la cantidad de luz solar que recibimos cada día"
+                ],
+                "r": 0
+            }
+        ]
+    },
+    {
+        "nro": 8,
+        "t": "ESTUDIO DE LOS SUELOS EN LA MADRE TIERRA: GEOLOGÍA",
+        "p": [
+            {
+                "nro": 1,
+                "e": "¿Qué es el estudio de los suelos de la madre tierra?",
+                "o": [
+                    "La pedología es el estudio del suelo en su estado natural. La edafología es el estudio del suelo en lo referente a su uso. Ambas ramas aplican una combinación de física, química, y biología del suelo",
+                    "El estudio de los suelos de la Madre Tierra se enfoca únicamente en la cantidad de agua que absorbe el suelo durante la lluvia",
+                    "El estudio de los suelos de la Madre Tierra se dedica a analizar cómo las plantas crecen sin tener en cuenta los minerales o nutrientes del suelo",
+                    "El estudio de los suelos de la Madre Tierra investiga solo la textura del suelo sin considerar su composición química o biológica"
+                ],
+                "r": 0
+            },
+            {
+                "nro": 2,
+                "e": "¿Qué es el suelo en geología?",
+                "o": [
+                    "El suelo en geología es una capa de agua que cubre la corteza terrestre, necesaria para el crecimiento de los océanos",
+                    "El suelo en geología es una capa sólida que se encuentra en las profundidades de la Tierra, formada exclusivamente por roca sólida",
+                    "El suelo es la porción más superficial de la corteza terrestre, constituida en su mayoría por residuos de roca provenientes de procesos erosivos y otras alteraciones físicas y químicas, así como de materia orgánica fruto de la actividad biológica que se desarrolla en la superficie",
+                    "El suelo en geología es una capa de gas que rodea la superficie terrestre y se encarga de regular la temperatura del planeta"
+                ],
+                "r": 2
+            },
+            {
+                "nro": 3,
+                "e": "¿Cómo se llama el estudio de los suelos?",
+                "o": [
+                    "El estudio de los suelos se llama meteorología",
+                    "Así, la pedología estudia la descripción, génesis y clasificación de los suelos mientras que la edafología es la ciencia que trata del suelo únicamente en tanto que medio vital para los seres vivos",
+                    "El estudio de los suelos se llama botánica",
+                    "El estudio de los suelos se llama astronomía"
+                ],
+                "r": 1
+            },
+            {
+                "nro": 4,
+                "e": "¿Cuáles son los 4 componentes del suelo?",
+                "o": [
+                    "Los 4 componentes del suelo son agua, aire, metal y gas",
+                    "Los 4 componentes del suelo son piedra, sal, azúcar y oxígeno",
+                    "Los 4 componentes del suelo son agua, luz, calor y electricidad",
+                    "El suelo está compuesto por partículas minerales, materia orgánica, agua y aire en distintas proporciones"
+                ],
+                "r": 3
+            },
+            {
+                "nro": 5,
+                "e": "¿Qué es lo más importante en un estudio de suelos?",
+                "o": [
+                    "Lo más importante en un estudio de suelos es la cantidad de aire que contiene el suelo",
+                    "A través del estudio de suelos se puede conocer las características físicas y geológicas, se puede ver la secuencia litológica, las diferentes capas y su espesor, la profundidad del nivel del agua subterránea y hasta la capacidad de resistencia de un suelo o una roca",
+                    "Lo más importante en un estudio de suelos es la velocidad a la que se seca el suelo después de la lluvia",
+                    "Lo más importante en un estudio de suelos es la forma en que el suelo cambia de color bajo la luz del sol"
+                ],
+                "r": 1
+            },
+            {
+                "nro": 6,
+                "e": "¿Cuál es la estructura de la tierra?",
+                "o": [
+                    "La estructura de la Tierra está compuesta por capas de aire, agua, fuego y luz",
+                    "La estructura de la Tierra está formada por capas esféricas concéntricas: una corteza sólida de silicatos exterior, una astenosfera y un manto altamente viscosos, un núcleo externo líquido que es mucho menos viscoso que el manto y un núcleo interno sólido",
+                    "La estructura de la Tierra consiste en un núcleo de gas, una capa de hielo y una corteza sólida",
+                    "La estructura de la Tierra está formada por tres capas: la corteza, el manto de metal y el núcleo de magma"
+                ],
+                "r": 1
+            },
+            {
+                "nro": 7,
+                "e": "¿Cuál es la División de los suelos en la Madre Tierra?",
+                "o": [
+                    "Los suelos en la Madre Tierra se dividen en suelos de agua, suelos de aire y suelos de luz",
+                    "Los suelos en la Madre Tierra se dividen en suelos rocosos, suelos gaseosos y suelos líquidos",
+                    "Se distinguen suelos autóctonos, que se asientan sobre su roca madre, lo que representa la situación más común, y suelos alóctonos, formados con una matriz mineral aportada desde otro lugar por los procesos geológicos de transporte",
+                    "Los suelos en la Madre Tierra se dividen en suelos fértiles, suelos salados y suelos radiactivos"
+                ],
+                "r": 2
+            },
+            {
+                "nro": 8,
+                "e": "¿Como se describe el cuidado de los suelos en la Madre Tierra?",
+                "o": [
+                    "El cuidado de los suelos en la Madre Tierra implica regar constantemente los suelos con productos químicos para hacerlos más fértiles",
+                    "El cuidado de los suelos en la Madre Tierra consiste en cubrir los suelos con una capa de plástico para evitar la pérdida de nutrientes",
+                    "Cuidar el suelo supone actuar sobre la agroecología, el urbanismo, la minería, residuos, agua y el cambio climático, entre otros",
+                    "El cuidado de los suelos en la Madre Tierra se basa únicamente en plantar árboles sin tener en cuenta las prácticas agrícolas o el uso responsable de la tierra"
+                ],
+                "r": 2
+            },
+            {
+                "nro": 9,
+                "e": "¿Cuántas clases de suelo existen?",
+                "o": [
+                    "Arenosos; limos; suelos francos y arcillosos o barros",
+                    "Suelos húmedos y suelos seco",
+                    "Suelos metálicos, suelos líquidos, suelos gaseosos, suelos sólidos y suelos térmicos",
+                    "Suelos planos, suelos montañosos y suelos marinos"
+                ],
+                "r": 2
+            },
+            {
+                "nro": 10,
+                "e": "¿Cuáles son los tipos de erosión de suelo?",
+                "o": [
+                    "Los tipos de erosión de suelo son erosión por viento, erosión por lluvia y erosión por presión",
+                    "Los tipos de erosión de suelo son erosión por fuego, erosión por deshielo y erosión por iluminación",
+                    "Erosión fluvial; Erosión marina; Erosión kárstica; Erosión glaciar; Erosión eólica; Erosión biológica; Erosión antrópica",
+                    "Los tipos de erosión de suelo son erosión por animales, erosión por ruido y erosión por gases"
+                ],
+                "r": 2
+            }
+        ]
+    },
+    {
+        "nro": 9,
+        "t": "ECOLOGÍA: RELACIONES DE INTERDEPENDENCIA EN LA MADRE TIERRA",
+        "p": [
+            {
+                "nro": 1,
+                "e": "¿Qué es la interdependencia entre la Madre Tierra y el ser humano?",
+                "o": [
+                    "La interdependencia entre la Madre Tierra y el ser humano significa que los humanos pueden vivir sin necesidad de los recursos naturales de la Tierra",
+                    "La interdependencia entre la Madre Tierra y el ser humano implica que la Tierra depende completamente de los humanos para su existencia",
+                    "La interdependencia entre la Madre Tierra y el ser humano es cuando los humanos pueden utilizar todos los recursos naturales de la Tierra sin ningún impacto en el medio ambiente",
+                    "Los seres humanos somos interdependientes, formamos parte de un todo, al que llamamos naturaleza en el planeta tierra que es nuestro hogar. Hablar de naturaleza es hablar de origen, creación y sabiduría, con ella compartimos la existencia y como una madre nos sustenta"
+                ],
+                "r": 3
+            },
+            {
+                "nro": 2,
+                "e": "¿Qué importancia tiene la Madre Tierra para los seres humanos?",
+                "o": [
+                    "La Madre Tierra no tiene ninguna importancia para los seres humanos, ya que los humanos pueden vivir sin ella",
+                    "La importancia de la Madre Tierra para los seres humanos es que proporciona una fuente infinita de energía sin necesidad de conservación",
+                    "La Madre Tierra es importante para los seres humanos solo porque proporciona un lugar para descansar, pero no tiene influencia en otras áreas de la vida humana",
+                    "La Madre Tierra provee de alimentos, agua, aire limpio y recursos naturales esenciales para nuestra supervivencia, por lo que es vital adoptar acciones concretas para protegerla"
+                ],
+                "r": 3
+            },
+            {
+                "nro": 3,
+                "e": "¿Qué es el saneamiento básico?",
+                "o": [
+                    "El saneamiento básico es el proceso de eliminar todas las plantas y árboles de una ciudad para mejorar la salud pública",
+                    "El saneamiento básico es el uso de productos químicos para crear más espacios urbanos sin importar la calidad del agua",
+                    "El saneamiento básico es un conjunto de acciones que se pueden aplicar sobre el ambiente para reducir los riesgos sanitarios, prevenir la contaminación y, consecuentemente, lograr mejores niveles de salud",
+                    "El saneamiento básico es la construcción de edificios de lujo en áreas rurales sin tener en cuenta las necesidades de infraestructura de agua y saneamiento"
+                ],
+                "r": 2
+            },
+            {
+                "nro": 4,
+                "e": "¿Qué es la contaminación con huella de carbono?",
+                "o": [
+                    "La contaminación con huella de carbono es la acumulación de dióxido de carbono en la atmósfera debido a las actividades humanas, que es beneficiosa para el crecimiento de las plantas",
+                    "La huella de carbono mide las emisiones de gases de efecto invernadero procedentes de la actividad humana. Cada vez que viajamos en coche, cargamos el teléfono móvil o ponemos una lavadora, entre otros miles de rutinas, dejamos atrás una estela de gases que se acumulan en la atmósfera y sobrecalientan el planeta",
+                    "La contaminación con huella de carbono se refiere al aumento de la cantidad de oxígeno en el aire debido al uso excesivo de combustibles fósiles",
+                    "La contaminación con huella de carbono es el proceso por el cual las plantas absorben grandes cantidades de dióxido de carbono, liberando oxígeno y purificando el aire"
+                ],
+                "r": 1
+            },
+            {
+                "nro": 5,
+                "e": "¿Qué es lo que más genera huella de carbono?",
+                "o": [
+                    "La huella de carbono se genera principalmente por el uso de energía solar y energías renovables",
+                    "La huella de carbono proviene principalmente de la producción de alimentos orgánicos y la agricultura sostenible",
+                    "La huella de carbono es causada principalmente por la reducción de la deforestación y el aumento de áreas verdes",
+                    "Las actividades de extracción y producción de materias primas compradas por la empresa, el uso de los productos vendidos a terceros, o las actividades de gestión de residuos de un hogar serían algunos ejemplos de este alcance"
+                ],
+                "r": 3
+            },
+            {
+                "nro": 6,
+                "e": "¿Por qué es importante el agua?",
+                "o": [
+                    "El agua es un bien natural que permite el desarrollo de la sociedad, la justicia social y contrarresta la pobreza. También resalta atribuciones culturales, simbólicas y es un elemento esencial para toda la biosfera",
+                    "El agua es importante porque ayuda a mantener el aire limpio y libre de contaminación",
+                    "El agua es importante porque se utiliza para generar energía eléctrica únicamente en las ciudades",
+                    "El agua es importante porque permite la creación de alimentos artificiales en el espacio sin necesidad de plantas"
+                ],
+                "r": 0
             }
         ]
     }
