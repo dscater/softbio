@@ -14,12 +14,18 @@ const props = defineProps({
         type: Boolean,
         default: false,
     },
+    etapaJuego: {
+        type: Number,
+        default: 1,
+    },
 });
 
 const urlassets = ref(url_assets);
 const juegoIniciado = ref(props.estadoJuego);
 const valorPuntaje = ref(props.puntajeActual);
 const estadoRespuesta = ref(props.respCorrecta);
+const valEtapaJuego = ref(props.etapaJuego);
+const muestra_etapa2 = ref(false);
 let animacionComponent = null;
 let animationFrameId = null;
 let xBackground1 = 0;
@@ -130,6 +136,109 @@ const moneda = {
     },
 };
 
+const valla = {
+    x: 0,
+    y: 150,
+    width: 30,
+    height: 60,
+    color: "saddlebrown",
+    velocidad: 3,
+    visible: true,
+    xPosicionInicial: 0,
+    yPosicionInicial: 0,
+    moviendo: 0,
+    moverIzquierda: function () {
+        if (this.moviendo == 1) {
+            this.x -= this.velocidad;
+        } else {
+            this.x = this.xPosicionInicial;
+        }
+    },
+    setEstado: function (val) {
+        this.moviendo = val;
+    },
+    setEjeX: function (x) {
+        this.x = x;
+    },
+    posicionInicial: function (cw) {
+        this.x = cw / 1.69;
+        this.y = 150;
+        this.xPosicionInicial = this.x;
+        this.yPosicionInicial = this.y;
+    },
+    dibujar: function (ctx) {
+        ctx.save();
+        ctx.save();
+
+        // Dibujar fondo con esquinas redondeadas
+        const radius = 10; // Radio de esquina
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.moveTo(this.x + radius, this.y);
+        ctx.lineTo(this.x + this.width - radius, this.y);
+        ctx.quadraticCurveTo(
+            this.x + this.width,
+            this.y,
+            this.x + this.width,
+            this.y + radius
+        );
+        ctx.lineTo(this.x + this.width, this.y + this.height - radius);
+        ctx.quadraticCurveTo(
+            this.x + this.width,
+            this.y + this.height,
+            this.x + this.width - radius,
+            this.y + this.height
+        );
+        ctx.lineTo(this.x + radius, this.y + this.height);
+        ctx.quadraticCurveTo(
+            this.x,
+            this.y + this.height,
+            this.x,
+            this.y + this.height - radius
+        );
+        ctx.lineTo(this.x, this.y + radius);
+        ctx.quadraticCurveTo(this.x, this.y, this.x + radius, this.y);
+        ctx.closePath();
+        ctx.fill();
+
+        // Borde marrón/café
+        ctx.strokeStyle = "#8B4513"; // Café estilo madera
+        ctx.lineWidth = 4;
+        ctx.stroke();
+
+        // Listones horizontales
+        ctx.strokeStyle = "black";
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(this.x + 5, this.y + 15);
+        ctx.lineTo(this.x + this.width - 5, this.y + 15);
+        ctx.moveTo(this.x + 5, this.y + 35);
+        ctx.lineTo(this.x + this.width - 5, this.y + 35);
+        ctx.stroke();
+
+        ctx.restore();
+    },
+    colisionaCon: function (jugador) {
+        return (
+            this.x < jugador.x + jugador.width &&
+            this.x + this.width > jugador.x &&
+            this.y < jugador.y + jugador.height &&
+            this.y + this.height > jugador.y
+        );
+    },
+    detectarProximidad: function (jugador) {
+        // Detecta si el jugador está a una distancia de 100 píxeles de la valla
+        const distanciaSegura = 150;
+        if (
+            this.x - jugador.x < distanciaSegura &&
+            this.x + 150 - jugador.x > 0
+        ) {
+            return true; // El jugador está lo suficientemente cerca para saltar
+        }
+        return false;
+    },
+};
+
 const emit = defineEmits(["actualizaEstadoRespuesta"]);
 
 var objPersonaje = {
@@ -145,9 +254,13 @@ var objPersonaje = {
     velocidad: 5,
     velocidadR: 8,
     irAdelante: 1,
+    saltando: false,
+    fuerzaSalto: 0,
     width: 40,
     height: 100,
     xPosicionInicial: 0,
+    gravedad: 0.76, // Gravedad que afecta el salto
+    sueloY: 120, // Suelo al que el personaje debe caer (puedes ajustarlo)
     mover: function (ctx) {
         if (this.contFrames > this.speedFrame) {
             if (this.frame < this.maxFrames) {
@@ -181,6 +294,75 @@ var objPersonaje = {
             this.width,
             this.height
         );
+
+        if (this.saltando) {
+            const padding = 10;
+            const texto = `+${valorPuntaje.value}`;
+            const textoWidth = ctx.measureText(texto).width;
+            const textoHeight = 35;
+            const radius = 10; // Radio para esquinas redondeadas
+
+            const rectX = this.x + this.width + 10 - padding;
+            const rectY = this.y + this.height / 2 - textoHeight / 2 - padding;
+            const rectWidth = textoWidth + 2 * padding;
+            const rectHeight = textoHeight + 2 * padding;
+
+            ctx.save();
+
+            // Fondo redondeado
+            ctx.beginPath();
+            ctx.moveTo(rectX + radius, rectY);
+            ctx.lineTo(rectX + rectWidth - radius, rectY);
+            ctx.quadraticCurveTo(
+                rectX + rectWidth,
+                rectY,
+                rectX + rectWidth,
+                rectY + radius
+            );
+            ctx.lineTo(rectX + rectWidth, rectY + rectHeight - radius);
+            ctx.quadraticCurveTo(
+                rectX + rectWidth,
+                rectY + rectHeight,
+                rectX + rectWidth - radius,
+                rectY + rectHeight
+            );
+            ctx.lineTo(rectX + radius, rectY + rectHeight);
+            ctx.quadraticCurveTo(
+                rectX,
+                rectY + rectHeight,
+                rectX,
+                rectY + rectHeight - radius
+            );
+            ctx.lineTo(rectX, rectY + radius);
+            ctx.quadraticCurveTo(rectX, rectY, rectX + radius, rectY);
+            ctx.closePath();
+
+            ctx.fillStyle = "rgba(255, 203, 0, 0.8)"; // Amarillo oro
+            ctx.fill();
+
+            // Borde del fondo
+            ctx.strokeStyle = "#b8860b"; // Dorado oscuro (goldenrod)
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+            // Texto
+            ctx.font = "25px Arial";
+            ctx.fillStyle = "white";
+            ctx.lineWidth = 1.5;
+            ctx.strokeStyle = "black"; // Contorno del texto
+            ctx.strokeText(
+                texto,
+                this.x + this.width + 10,
+                this.y + this.height / 2
+            );
+            ctx.fillText(
+                texto,
+                this.x + this.width + 10,
+                this.y + this.height / 2
+            );
+
+            ctx.restore();
+        }
     },
     posicionInicial: function (cw) {
         if (cw < 700) {
@@ -195,10 +377,19 @@ var objPersonaje = {
     },
     avanzar: function (cw) {
         if (this.irAdelante === 1) {
-            if (this.x < cw - this.width) {
-                this.x += this.velocidad;
+            if (valEtapaJuego.value == 2) {
+                if (this.x < cw - this.width - 500) {
+                    this.x += this.velocidad;
+                } else {
+                    this.irAdelante = -1;
+                    this.x = cw / 2.5;
+                }
             } else {
-                this.x = cw / 2.5;
+                if (this.x < cw - this.width) {
+                    this.x += this.velocidad;
+                } else {
+                    this.x = cw / 2.5;
+                }
             }
         }
     },
@@ -211,6 +402,41 @@ var objPersonaje = {
                 this.irAdelante = 0;
                 emit("actualizaEstadoRespuesta");
             }
+        }
+    },
+    saltar: function () {
+        if (!this.saltando) {
+            this.saltando = true;
+            this.fuerzaSalto = 12; // Altura inicial del salto
+        }
+    },
+    caer: function () {
+        if (this.saltando) {
+            if (!audioCorrecto.played) {
+                audioCorrecto.play();
+            } else {
+                audioCorrecto.currentTime = 0;
+                audioCorrecto.play();
+            }
+        }
+
+        this.saltando = false;
+        this.fuerzaSalto = 0; // Altura inicial del salto
+    },
+    actualizar: function () {
+        // Lógica del salto
+        if (this.saltando) {
+            this.y -= this.fuerzaSalto; // Mover al personaje hacia arriba
+            this.fuerzaSalto -= this.gravedad; // Reducir la fuerza del salto (simulando gravedad)
+
+            // Cuando el personaje llega al suelo, detener el salto
+            if (this.y >= this.sueloY) {
+                this.y = this.sueloY; // Asegurarse de que el personaje no baje de más
+                this.saltando = false; // El salto ha terminado
+                this.fuerzaSalto = 0; // Restablecer la fuerza de salto
+            }
+        } else {
+            this.y = 120;
         }
     },
     setSpeed(s) {
@@ -279,6 +505,17 @@ watch(
 );
 
 watch(
+    () => props.etapaJuego,
+    (newVal) => {
+        valEtapaJuego.value = newVal;
+
+        if (valEtapaJuego.value == 2) {
+            muestra_etapa2.value = true;
+        }
+    }
+);
+
+watch(
     () => props.respCorrecta,
     (newVal) => {
         estadoRespuesta.value = newVal;
@@ -313,20 +550,39 @@ onMounted(() => {
 
     objPersonaje.posicionInicial(CANVAS_WIDTH);
     moneda.posicionInicial(CANVAS_WIDTH);
+    valla.posicionInicial(CANVAS_WIDTH);
     objPersonaje.setEstadoPersonaje(0);
     const animacion = () => {
         contexto.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
         dibujarBackground(contexto);
         objPersonaje.dibujar(contexto, CANVAS_WIDTH);
-        moneda.dibujar(contexto, CANVAS_WIDTH);
-        moneda.animar(CANVAS_WIDTH);
-        moneda.setEjeX(moneda.xPosicionInicial);
-        colision(CANVAS_WIDTH, CANVAS_HEIGHT);
-        setTimeout(() => {
-            objPersonaje.mover(contexto);
-            objPersonaje.retroceder(CANVAS_WIDTH);
-            objPersonaje.avanzar(CANVAS_WIDTH);
-        }, 500);
+        // console.log(muestra_etapa2.value);
+        if (!muestra_etapa2.value) {
+            moneda.dibujar(contexto, CANVAS_WIDTH);
+            moneda.animar(CANVAS_WIDTH);
+            moneda.setEjeX(moneda.xPosicionInicial);
+            colision(CANVAS_WIDTH, CANVAS_HEIGHT);
+        } else {
+            if (muestra_etapa2.value) {
+                // console.log("etapa 2");
+                valla.dibujar(contexto, CANVAS_WIDTH);
+                valla.setEjeX(valla.xPosicionInicial);
+                valla.moverIzquierda();
+                objPersonaje.actualizar();
+                if (valla.detectarProximidad(objPersonaje)) {
+                    valla.setEstado(1);
+                    objPersonaje.saltar();
+                } else {
+                    objPersonaje.caer();
+                }
+                valla.moverIzquierda();
+            }
+        }
+        // setTimeout(() => {
+        objPersonaje.mover(contexto);
+        objPersonaje.retroceder(CANVAS_WIDTH);
+        objPersonaje.avanzar(CANVAS_WIDTH);
+        // }, 500);
         if (juegoIniciado.value) {
             animationFrameId = requestAnimationFrame(animacion);
         }

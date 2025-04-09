@@ -17,7 +17,7 @@ const breadbrums = [
 <script setup>
 import { useApp } from "@/composables/useApp";
 import { Head, Link, router } from "@inertiajs/vue3";
-import { ref, onMounted, onBeforeUnmount } from "vue";
+import { ref, onMounted, onBeforeUnmount, computed } from "vue";
 import PanelToolbar from "@/Components/PanelToolbar.vue";
 const props = defineProps({
     evaluacion: {
@@ -40,15 +40,35 @@ onMounted(() => {
 });
 
 // cargar respuestas obtenidas de la BD
+const total_correctos = ref(0);
 const cargarRespuestas = () => {
     loading.value = true;
+    total_correctos.value = 0;
     evaluacion_preguntas.value.forEach((el) => {
         let elemento_txt = `opcion${el.tema}${el.pregunta}${el.opcion}`;
         const elemento = document.getElementById(elemento_txt);
         if (el.correcto == 1) {
+            if (el.tema == nro_tema.value - 1) {
+                total_correctos.value++;
+            }
             elemento.classList.add("correcto");
         } else {
             elemento.classList.add("incorrecto");
+        }
+    });
+    loading.value = false;
+};
+
+const cargarPorTema = () => {
+    loading.value = true;
+    total_correctos.value = 0;
+    evaluacion_preguntas.value.forEach((el) => {
+        if (el.tema == nro_tema.value - 1) {
+            let elemento_txt = `opcion${el.tema}${el.pregunta}${el.opcion}`;
+            // const elemento = document.getElementById(elemento_txt);
+            if (el.correcto == 1) {
+                total_correctos.value++;
+            }
         }
     });
     loading.value = false;
@@ -83,13 +103,22 @@ const asignaPregunta = (tema, pregunta, opcion, correcto) => {
 };
 
 const cambiaTema = (increment) => {
+    total_correctos.value = 0;
     nro_tema.value = nro_tema.value + increment;
+    cargarPorTema();
 };
 
 const getInciso = (index) => {
     const incisos = ["a", "b", "c", "d", "e", "f"];
     return incisos[index] + ")";
 };
+
+//porcentaje de porcentaje
+const getPorcentajeTema = computed(() => {
+    const total = listTemasPreguntas.value[nro_tema.value - 1]["p"].length;
+    const p = (total_correctos.value / total) * 100;
+    return Math.round(p, 2);
+});
 
 onMounted(() => {
     cargarRespuestas();
@@ -127,7 +156,12 @@ onBeforeUnmount(() => {});
                         v-show="tp.nro == nro_tema"
                     >
                         <div class="col-12">
-                            <h4 class="text-center">{{ tp.t }}</h4>
+                            <h4 class="text-center">
+                                {{ tp.t }}
+                                <div class="puntaje">
+                                    {{ getPorcentajeTema }}%
+                                </div>
+                            </h4>
                             <p>
                                 <strong>Estudiante: </strong
                                 >{{ props.evaluacion.user.full_name }}

@@ -11,8 +11,10 @@ import { usePage, Head, Link } from "@inertiajs/vue3";
 
 import Highcharts from "highcharts";
 import exporting from "highcharts/modules/exporting";
+import accessibility from "highcharts/modules/accessibility";
 
 exporting(Highcharts);
+accessibility(Highcharts);
 Highcharts.setOptions({
     lang: {
         downloadPNG: "Descargar PNG",

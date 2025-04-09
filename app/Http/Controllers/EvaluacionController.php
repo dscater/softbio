@@ -8,6 +8,7 @@ use App\Models\HistorialAccion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 
@@ -147,6 +148,16 @@ class EvaluacionController extends Controller
             }
 
             DB::commit();
+
+            if ($request->ajax()) {
+                Log::debug("ASDSD");
+                return response()->JSON([
+                    "evaluacion" => $evaluacion->load(["evaluacion_preguntas"])
+                ]);
+            }
+            Log::debug("BBB");
+
+            // return redirect()->route("evaluacions.edit", $evaluacion->id)->with("bien", "Registro actualizado");
             return redirect()->route("evaluacions.index")->with("bien", "Registro actualizado");
         } catch (\Exception $e) {
             DB::rollBack();

@@ -278,3 +278,14 @@ iframe {
     display: flex;
     align-items: center;
 }
+
+.puntaje{
+    float: right;
+    width: 100px;
+    text-align: right;
+    font-size: 1.3em;
+    font-weight: bold;
+    border: solid 1px black;
+    padding: 10px;
+    text-align: center;
+}

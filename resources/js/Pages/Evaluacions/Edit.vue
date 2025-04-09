@@ -17,14 +17,16 @@ const breadbrums = [
 <script setup>
 import { useApp } from "@/composables/useApp";
 import { Head, Link } from "@inertiajs/vue3";
-import { ref, onMounted, onBeforeUnmount } from "vue";
+import { ref, onMounted, onBeforeUnmount, computed } from "vue";
 import PanelToolbar from "@/Components/PanelToolbar.vue";
 const props = defineProps({
     evaluacion: {
         type: Object,
         default: {
+            id: 0,
             user_id: 0,
             evaluacion_preguntas: [],
+            porcentaje_correctos: 0,
         },
     },
 });
@@ -40,15 +42,37 @@ onMounted(() => {
 });
 
 // cargar respuestas obtenidas de la BD
+const total_correctos = ref(0);
 const cargarRespuestas = () => {
     loading.value = true;
+    total_correctos.value = 0;
     evaluacion_preguntas.value.forEach((el) => {
         let elemento_txt = `opcion${el.tema}${el.pregunta}${el.opcion}`;
         const elemento = document.getElementById(elemento_txt);
+        // console.log(elemento);
         if (el.correcto == 1) {
+            if (el.tema == nro_tema.value - 1) {
+                total_correctos.value++;
+            }
             elemento.classList.add("correcto");
         } else {
             elemento.classList.add("incorrecto");
+        }
+    });
+    loading.value = false;
+    // console.log("correctos", total_correctos.value);
+};
+
+const cargarPorTema = () => {
+    loading.value = true;
+    total_correctos.value = 0;
+    evaluacion_preguntas.value.forEach((el) => {
+        if (el.tema == nro_tema.value - 1) {
+            let elemento_txt = `opcion${el.tema}${el.pregunta}${el.opcion}`;
+            // const elemento = document.getElementById(elemento_txt);
+            if (el.correcto == 1) {
+                total_correctos.value++;
+            }
         }
     });
     loading.value = false;
@@ -63,7 +87,7 @@ const asignaPregunta = (tema, pregunta, opcion, correcto) => {
     if (index !== -1) {
         evaluacion_preguntas.value[index]["opcion"] = opcion;
         evaluacion_preguntas.value[index]["correcto"] = correcto;
-        console.log("Elemento modificado:", evaluacion_preguntas.value[index]);
+        // console.log("Elemento modificado:", evaluacion_preguntas.value[index]);
     } else {
         evaluacion_preguntas.value.push({
             id: 0,
@@ -73,18 +97,19 @@ const asignaPregunta = (tema, pregunta, opcion, correcto) => {
             opcion: opcion,
             correcto: correcto,
         });
-        console.log("Nuevo elemento agregado:", {
-            tema,
-            pregunta,
-            opcion,
-            correcto,
-        });
+        // console.log("Nuevo elemento agregado:", {
+        //     tema,
+        //     pregunta,
+        //     opcion,
+        //     correcto,
+        // });
     }
 };
 
-
 const cambiaTema = (increment) => {
+    total_correctos.value = 0;
     nro_tema.value = nro_tema.value + increment;
+    cargarPorTema();
 };
 
 const getInciso = (index) => {
@@ -93,6 +118,7 @@ const getInciso = (index) => {
 };
 
 // verificacion de respuestas
+
 const verificaRespuesta = (index_t, index_p, index_o, element) => {
     const elemento = document.getElementById(element);
     elemento.classList.remove("correcto");
@@ -103,15 +129,31 @@ const verificaRespuesta = (index_t, index_p, index_o, element) => {
     opciones.forEach((elem) => {
         elem.classList.remove("correcto");
         elem.classList.remove("incorrecto");
+        elem.classList.remove("marcado");
     });
 
     const pregunta = listTemasPreguntas.value[index_t]["p"][index_p];
     let correcto = 0;
+    const existe_registro = evaluacion_preguntas.value.filter((elem) => {
+        return elem.tema === index_t && elem.pregunta === index_p;
+    });
+    const marca = 0;
+    if (existe_registro.length > 0) {
+        if (existe_registro.id != 0 && existe_registro.correcto == 1) {
+            marca = 1;
+        }
+    }
+
     if (index_o === pregunta.r) {
         elemento.classList.add("correcto");
         correcto = 1;
+        // total_correctos.value++;
     } else {
         elemento.classList.add("incorrecto");
+        // total_correctos.value--;
+    }
+    if (props.evaluacion.id == 0 || marca == 0) {
+        elemento.classList.add("marcado");
     }
     asignaPregunta(index_t, index_p, index_o, correcto);
 };
@@ -125,6 +167,10 @@ const guardarCambios = () => {
             _method: "put",
         })
         .then((response) => {
+            total_correctos.value = 0;
+            evaluacion_preguntas.value =
+                response.data.evaluacion.evaluacion_preguntas;
+            cargarPorTema();
             Swal.fire({
                 icon: "success",
                 title: "Correcto",
@@ -135,6 +181,13 @@ const guardarCambios = () => {
             loading.value = false;
         });
 };
+
+//porcentaje de porcentaje
+const getPorcentajeTema = computed(() => {
+    const total = listTemasPreguntas.value[nro_tema.value - 1]["p"].length;
+    const p = (total_correctos.value / total) * 100;
+    return Math.round(p, 2);
+});
 
 onMounted(() => {
     cargarRespuestas();
@@ -172,7 +225,12 @@ onBeforeUnmount(() => {});
                         v-show="tp.nro == nro_tema"
                     >
                         <div class="col-12">
-                            <h4 class="text-center">{{ tp.t }}</h4>
+                            <h4 class="text-center">
+                                {{ tp.t }}
+                                <div class="puntaje">
+                                    {{ getPorcentajeTema }}%
+                                </div>
+                            </h4>
                         </div>
                         <small class="mb-2"
                             >Selecciona la respuesta correcta</small
@@ -261,5 +319,9 @@ onBeforeUnmount(() => {});
 }
 .cont_opcion.incorrecto {
     background-color: rgb(248, 147, 147);
+}
+
+.cont_opcion.marcado {
+    background-color: rgb(253, 251, 224);
 }
 </style>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 06-11-2024 a las 20:44:22
+-- Tiempo de generación: 09-04-2025 a las 19:21:43
 -- Versión del servidor: 8.0.30
 -- Versión de PHP: 8.2.22
 
@@ -40,7 +40,7 @@ CREATE TABLE `aprendizajes` (
 --
 
 INSERT INTO `aprendizajes` (`id`, `user_id`, `puntaje`, `created_at`, `updated_at`) VALUES
-(1, 5, 150, '2024-11-06 22:49:28', '2024-11-06 23:01:45'),
+(1, 5, 435, '2024-11-06 22:49:28', '2025-04-09 19:27:27'),
 (2, 4, 55, '2024-11-06 23:14:10', '2024-11-06 23:14:10');
 
 -- --------------------------------------------------------
@@ -51,16 +51,16 @@ INSERT INTO `aprendizajes` (`id`, `user_id`, `puntaje`, `created_at`, `updated_a
 
 CREATE TABLE `configuracions` (
   `id` bigint UNSIGNED NOT NULL,
-  `nombre_sistema` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `alias` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `razon_social` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `ciudad` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `dir` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `fono` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `correo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `web` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `actividad` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `logo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `nombre_sistema` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `alias` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `razon_social` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ciudad` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `dir` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fono` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `correo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `web` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `actividad` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `logo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -80,7 +80,7 @@ INSERT INTO `configuracions` (`id`, `nombre_sistema`, `alias`, `razon_social`, `
 
 CREATE TABLE `cursos` (
   `id` bigint UNSIGNED NOT NULL,
-  `nombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nombre` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -113,7 +113,8 @@ CREATE TABLE `evaluacions` (
 --
 
 INSERT INTO `evaluacions` (`id`, `user_id`, `fecha_registro`, `created_at`, `updated_at`) VALUES
-(1, 5, '2024-10-31', '2024-10-31 18:44:27', '2024-10-31 18:44:27');
+(1, 5, '2024-10-31', '2024-10-31 18:44:27', '2024-10-31 18:44:27'),
+(2, 6, '2025-04-09', '2025-04-09 17:14:15', '2025-04-09 17:14:15');
 
 -- --------------------------------------------------------
 
@@ -137,16 +138,25 @@ CREATE TABLE `evaluacion_preguntas` (
 --
 
 INSERT INTO `evaluacion_preguntas` (`id`, `evaluacion_id`, `tema`, `pregunta`, `opcion`, `correcto`, `created_at`, `updated_at`) VALUES
-(1, 1, 0, 0, 1, 0, NULL, '2024-10-31 21:18:32'),
-(2, 1, 0, 1, 1, 1, '2024-10-31 21:08:56', '2024-10-31 21:08:56'),
-(3, 1, 0, 2, 1, 1, '2024-10-31 21:08:56', '2024-10-31 21:08:56'),
-(4, 1, 0, 3, 0, 1, '2024-10-31 21:08:56', '2024-10-31 21:09:43'),
-(5, 1, 0, 4, 1, 0, '2024-10-31 21:08:56', '2024-10-31 21:08:56'),
-(6, 1, 0, 5, 0, 0, '2024-10-31 21:08:56', '2024-10-31 21:08:56'),
-(7, 1, 0, 6, 3, 0, '2024-10-31 21:08:56', '2024-10-31 21:08:56'),
-(8, 1, 1, 1, 1, 0, '2024-10-31 21:08:56', '2024-10-31 21:08:56'),
-(9, 1, 2, 0, 1, 0, '2024-10-31 21:18:32', '2024-10-31 21:18:32'),
-(10, 1, 2, 1, 2, 1, '2024-10-31 21:18:32', '2024-10-31 21:18:32');
+(1, 2, 0, 0, 3, 1, '2025-04-09 18:50:01', '2025-04-09 18:50:01'),
+(2, 2, 0, 1, 2, 0, '2025-04-09 18:50:01', '2025-04-09 18:50:01'),
+(3, 2, 0, 2, 1, 1, '2025-04-09 18:50:01', '2025-04-09 18:50:01'),
+(4, 2, 0, 4, 2, 1, '2025-04-09 18:50:01', '2025-04-09 18:50:01'),
+(5, 2, 0, 3, 1, 0, '2025-04-09 18:50:01', '2025-04-09 18:50:01'),
+(6, 2, 0, 5, 1, 0, '2025-04-09 18:50:01', '2025-04-09 18:50:01'),
+(7, 2, 0, 6, 1, 0, '2025-04-09 18:50:01', '2025-04-09 18:50:01'),
+(8, 2, 0, 7, 1, 0, '2025-04-09 18:50:01', '2025-04-09 18:50:01'),
+(9, 2, 0, 8, 1, 0, '2025-04-09 18:50:01', '2025-04-09 18:50:01'),
+(10, 2, 0, 9, 3, 1, '2025-04-09 18:50:01', '2025-04-09 18:50:01'),
+(11, 2, 1, 0, 0, 1, '2025-04-09 18:50:27', '2025-04-09 18:50:27'),
+(12, 2, 1, 1, 1, 0, '2025-04-09 18:50:27', '2025-04-09 18:50:27'),
+(13, 2, 1, 2, 1, 1, '2025-04-09 18:50:27', '2025-04-09 18:50:27'),
+(14, 2, 1, 3, 1, 1, '2025-04-09 18:50:27', '2025-04-09 18:50:27'),
+(15, 2, 1, 4, 0, 1, '2025-04-09 18:50:27', '2025-04-09 18:50:27'),
+(16, 2, 1, 5, 0, 1, '2025-04-09 18:50:27', '2025-04-09 18:53:22'),
+(17, 2, 1, 6, 1, 0, '2025-04-09 18:50:27', '2025-04-09 18:50:47'),
+(18, 2, 1, 7, 3, 0, '2025-04-09 18:50:28', '2025-04-09 18:50:28'),
+(19, 2, 1, 8, 1, 0, '2025-04-09 18:50:28', '2025-04-09 18:50:28');
 
 -- --------------------------------------------------------
 
@@ -157,11 +167,11 @@ INSERT INTO `evaluacion_preguntas` (`id`, `evaluacion_id`, `tema`, `pregunta`, `
 CREATE TABLE `historial_accions` (
   `id` bigint UNSIGNED NOT NULL,
   `user_id` bigint UNSIGNED NOT NULL,
-  `accion` varchar(155) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `descripcion` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `datos_original` text COLLATE utf8mb4_unicode_ci,
-  `datos_nuevo` text COLLATE utf8mb4_unicode_ci,
-  `modulo` varchar(155) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `accion` varchar(155) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `descripcion` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `datos_original` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `datos_nuevo` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `modulo` varchar(155) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `fecha` date NOT NULL,
   `hora` time NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -203,7 +213,37 @@ INSERT INTO `historial_accions` (`id`, `user_id`, `accion`, `descripcion`, `dato
 (28, 1, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UN USUARIO', 'id: 5<br/>nombre: CARLOS<br/>paterno: CHOQUE<br/>materno: MAMANI<br/>ci: 4444<br/>ci_exp: CB<br/>email: carlos@gmail.com<br/>password: $2y$12$JkAwVYMtNJy9UFwQv6RxAOq/jONkgTn2CiIHuGJQfSvztvmrO6.sW<br/>tipo: ESTUDIANTE<br/>foto: <br/>fecha_registro: 2024-10-30<br/>acceso: 0<br/>curso_id: 1<br/>created_at: 2024-10-30 15:02:02<br/>updated_at: 2024-10-30 15:02:02<br/>', 'id: 5<br/>nombre: CARLOS<br/>paterno: CHOQUE<br/>materno: MAMANI<br/>ci: 4444<br/>ci_exp: CB<br/>email: carlos@gmail.com<br/>password: $2y$12$JkAwVYMtNJy9UFwQv6RxAOq/jONkgTn2CiIHuGJQfSvztvmrO6.sW<br/>tipo: ESTUDIANTE<br/>foto: <br/>fecha_registro: 2024-10-30<br/>acceso: 1<br/>curso_id: 1<br/>created_at: 2024-10-30 15:02:02<br/>updated_at: 2024-10-31 14:42:30<br/>', 'USUARIOS', '2024-10-31', '14:42:30', '2024-10-31 18:42:30', '2024-10-31 18:42:30'),
 (29, 5, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA EVALUACIÓN', 'id: 1<br/>user_id: 5<br/>fecha_registro: 2024-10-31<br/>created_at: 2024-10-31 14:44:27<br/>updated_at: 2024-10-31 14:44:27<br/>', '', 'EVALUACIONES', '2024-10-31', '17:08:56', '2024-10-31 21:08:56', '2024-10-31 21:08:56'),
 (30, 5, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA EVALUACIÓN', 'id: 1<br/>user_id: 5<br/>fecha_registro: 2024-10-31<br/>created_at: 2024-10-31 14:44:27<br/>updated_at: 2024-10-31 14:44:27<br/>', '', 'EVALUACIONES', '2024-10-31', '17:09:43', '2024-10-31 21:09:43', '2024-10-31 21:09:43'),
-(31, 5, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA EVALUACIÓN', 'id: 1<br/>user_id: 5<br/>fecha_registro: 2024-10-31<br/>created_at: 2024-10-31 14:44:27<br/>updated_at: 2024-10-31 14:44:27<br/>', '', 'EVALUACIONES', '2024-10-31', '17:18:32', '2024-10-31 21:18:32', '2024-10-31 21:18:32');
+(31, 5, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA EVALUACIÓN', 'id: 1<br/>user_id: 5<br/>fecha_registro: 2024-10-31<br/>created_at: 2024-10-31 14:44:27<br/>updated_at: 2024-10-31 14:44:27<br/>', '', 'EVALUACIONES', '2024-10-31', '17:18:32', '2024-10-31 21:18:32', '2024-10-31 21:18:32'),
+(32, 6, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA EVALUACIÓN', 'id: 2<br/>user_id: 6<br/>fecha_registro: 2025-04-09<br/>created_at: 2025-04-09 13:14:15<br/>updated_at: 2025-04-09 13:14:15<br/>', '', 'EVALUACIONES', '2025-04-09', '13:14:42', '2025-04-09 17:14:42', '2025-04-09 17:14:42'),
+(33, 6, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA EVALUACIÓN', 'id: 2<br/>user_id: 6<br/>fecha_registro: 2025-04-09<br/>created_at: 2025-04-09 13:14:15<br/>updated_at: 2025-04-09 13:14:15<br/>', '', 'EVALUACIONES', '2025-04-09', '13:51:56', '2025-04-09 17:51:56', '2025-04-09 17:51:56'),
+(34, 6, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA EVALUACIÓN', 'id: 2<br/>user_id: 6<br/>fecha_registro: 2025-04-09<br/>created_at: 2025-04-09 13:14:15<br/>updated_at: 2025-04-09 13:14:15<br/>', '', 'EVALUACIONES', '2025-04-09', '13:53:03', '2025-04-09 17:53:03', '2025-04-09 17:53:03'),
+(35, 6, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA EVALUACIÓN', 'id: 2<br/>user_id: 6<br/>fecha_registro: 2025-04-09<br/>created_at: 2025-04-09 13:14:15<br/>updated_at: 2025-04-09 13:14:15<br/>', '', 'EVALUACIONES', '2025-04-09', '13:53:53', '2025-04-09 17:53:53', '2025-04-09 17:53:53'),
+(36, 6, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA EVALUACIÓN', 'id: 2<br/>user_id: 6<br/>fecha_registro: 2025-04-09<br/>created_at: 2025-04-09 13:14:15<br/>updated_at: 2025-04-09 13:14:15<br/>', '', 'EVALUACIONES', '2025-04-09', '13:56:29', '2025-04-09 17:56:29', '2025-04-09 17:56:29'),
+(37, 6, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA EVALUACIÓN', 'id: 2<br/>user_id: 6<br/>fecha_registro: 2025-04-09<br/>created_at: 2025-04-09 13:14:15<br/>updated_at: 2025-04-09 13:14:15<br/>', '', 'EVALUACIONES', '2025-04-09', '13:57:24', '2025-04-09 17:57:24', '2025-04-09 17:57:24'),
+(38, 6, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA EVALUACIÓN', 'id: 2<br/>user_id: 6<br/>fecha_registro: 2025-04-09<br/>created_at: 2025-04-09 13:14:15<br/>updated_at: 2025-04-09 13:14:15<br/>', '', 'EVALUACIONES', '2025-04-09', '13:57:40', '2025-04-09 17:57:40', '2025-04-09 17:57:40'),
+(39, 6, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA EVALUACIÓN', 'id: 2<br/>user_id: 6<br/>fecha_registro: 2025-04-09<br/>created_at: 2025-04-09 13:14:15<br/>updated_at: 2025-04-09 13:14:15<br/>', '', 'EVALUACIONES', '2025-04-09', '13:57:46', '2025-04-09 17:57:46', '2025-04-09 17:57:46'),
+(40, 6, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA EVALUACIÓN', 'id: 2<br/>user_id: 6<br/>fecha_registro: 2025-04-09<br/>created_at: 2025-04-09 13:14:15<br/>updated_at: 2025-04-09 13:14:15<br/>', '', 'EVALUACIONES', '2025-04-09', '13:57:56', '2025-04-09 17:57:56', '2025-04-09 17:57:56'),
+(41, 6, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA EVALUACIÓN', 'id: 2<br/>user_id: 6<br/>fecha_registro: 2025-04-09<br/>created_at: 2025-04-09 13:14:15<br/>updated_at: 2025-04-09 13:14:15<br/>', '', 'EVALUACIONES', '2025-04-09', '14:30:27', '2025-04-09 18:30:27', '2025-04-09 18:30:27'),
+(42, 6, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA EVALUACIÓN', 'id: 2<br/>user_id: 6<br/>fecha_registro: 2025-04-09<br/>created_at: 2025-04-09 13:14:15<br/>updated_at: 2025-04-09 13:14:15<br/>', '', 'EVALUACIONES', '2025-04-09', '14:32:35', '2025-04-09 18:32:35', '2025-04-09 18:32:35'),
+(43, 6, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA EVALUACIÓN', 'id: 2<br/>user_id: 6<br/>fecha_registro: 2025-04-09<br/>created_at: 2025-04-09 13:14:15<br/>updated_at: 2025-04-09 13:14:15<br/>', '', 'EVALUACIONES', '2025-04-09', '14:33:10', '2025-04-09 18:33:10', '2025-04-09 18:33:10'),
+(44, 6, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA EVALUACIÓN', 'id: 2<br/>user_id: 6<br/>fecha_registro: 2025-04-09<br/>created_at: 2025-04-09 13:14:15<br/>updated_at: 2025-04-09 13:14:15<br/>', '', 'EVALUACIONES', '2025-04-09', '14:33:45', '2025-04-09 18:33:45', '2025-04-09 18:33:45'),
+(45, 6, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA EVALUACIÓN', 'id: 2<br/>user_id: 6<br/>fecha_registro: 2025-04-09<br/>created_at: 2025-04-09 13:14:15<br/>updated_at: 2025-04-09 13:14:15<br/>', '', 'EVALUACIONES', '2025-04-09', '14:33:52', '2025-04-09 18:33:52', '2025-04-09 18:33:52'),
+(46, 6, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA EVALUACIÓN', 'id: 2<br/>user_id: 6<br/>fecha_registro: 2025-04-09<br/>created_at: 2025-04-09 13:14:15<br/>updated_at: 2025-04-09 13:14:15<br/>', '', 'EVALUACIONES', '2025-04-09', '14:33:58', '2025-04-09 18:33:58', '2025-04-09 18:33:58'),
+(47, 6, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA EVALUACIÓN', 'id: 2<br/>user_id: 6<br/>fecha_registro: 2025-04-09<br/>created_at: 2025-04-09 13:14:15<br/>updated_at: 2025-04-09 13:14:15<br/>', '', 'EVALUACIONES', '2025-04-09', '14:34:04', '2025-04-09 18:34:04', '2025-04-09 18:34:04'),
+(48, 6, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA EVALUACIÓN', 'id: 2<br/>user_id: 6<br/>fecha_registro: 2025-04-09<br/>created_at: 2025-04-09 13:14:15<br/>updated_at: 2025-04-09 13:14:15<br/>', '', 'EVALUACIONES', '2025-04-09', '14:34:31', '2025-04-09 18:34:31', '2025-04-09 18:34:31'),
+(49, 6, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA EVALUACIÓN', 'id: 2<br/>user_id: 6<br/>fecha_registro: 2025-04-09<br/>created_at: 2025-04-09 13:14:15<br/>updated_at: 2025-04-09 13:14:15<br/>', '', 'EVALUACIONES', '2025-04-09', '14:35:51', '2025-04-09 18:35:51', '2025-04-09 18:35:51'),
+(50, 6, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA EVALUACIÓN', 'id: 2<br/>user_id: 6<br/>fecha_registro: 2025-04-09<br/>created_at: 2025-04-09 13:14:15<br/>updated_at: 2025-04-09 13:14:15<br/>', '', 'EVALUACIONES', '2025-04-09', '14:36:04', '2025-04-09 18:36:04', '2025-04-09 18:36:04'),
+(51, 6, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA EVALUACIÓN', 'id: 2<br/>user_id: 6<br/>fecha_registro: 2025-04-09<br/>created_at: 2025-04-09 13:14:15<br/>updated_at: 2025-04-09 13:14:15<br/>', '', 'EVALUACIONES', '2025-04-09', '14:36:52', '2025-04-09 18:36:52', '2025-04-09 18:36:52'),
+(52, 6, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA EVALUACIÓN', 'id: 2<br/>user_id: 6<br/>fecha_registro: 2025-04-09<br/>created_at: 2025-04-09 13:14:15<br/>updated_at: 2025-04-09 13:14:15<br/>', '', 'EVALUACIONES', '2025-04-09', '14:37:34', '2025-04-09 18:37:34', '2025-04-09 18:37:34'),
+(53, 6, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA EVALUACIÓN', 'id: 2<br/>user_id: 6<br/>fecha_registro: 2025-04-09<br/>created_at: 2025-04-09 13:14:15<br/>updated_at: 2025-04-09 13:14:15<br/>', '', 'EVALUACIONES', '2025-04-09', '14:38:09', '2025-04-09 18:38:09', '2025-04-09 18:38:09'),
+(54, 6, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA EVALUACIÓN', 'id: 2<br/>user_id: 6<br/>fecha_registro: 2025-04-09<br/>created_at: 2025-04-09 13:14:15<br/>updated_at: 2025-04-09 13:14:15<br/>', '', 'EVALUACIONES', '2025-04-09', '14:44:11', '2025-04-09 18:44:11', '2025-04-09 18:44:11'),
+(55, 6, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA EVALUACIÓN', 'id: 2<br/>user_id: 6<br/>fecha_registro: 2025-04-09<br/>created_at: 2025-04-09 13:14:15<br/>updated_at: 2025-04-09 13:14:15<br/>', '', 'EVALUACIONES', '2025-04-09', '14:44:29', '2025-04-09 18:44:29', '2025-04-09 18:44:29'),
+(56, 6, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA EVALUACIÓN', 'id: 2<br/>user_id: 6<br/>fecha_registro: 2025-04-09<br/>created_at: 2025-04-09 13:14:15<br/>updated_at: 2025-04-09 13:14:15<br/>', '', 'EVALUACIONES', '2025-04-09', '14:44:42', '2025-04-09 18:44:42', '2025-04-09 18:44:42'),
+(57, 6, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA EVALUACIÓN', 'id: 2<br/>user_id: 6<br/>fecha_registro: 2025-04-09<br/>created_at: 2025-04-09 13:14:15<br/>updated_at: 2025-04-09 13:14:15<br/>', '', 'EVALUACIONES', '2025-04-09', '14:49:08', '2025-04-09 18:49:08', '2025-04-09 18:49:08'),
+(58, 6, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA EVALUACIÓN', 'id: 2<br/>user_id: 6<br/>fecha_registro: 2025-04-09<br/>created_at: 2025-04-09 13:14:15<br/>updated_at: 2025-04-09 13:14:15<br/>', '', 'EVALUACIONES', '2025-04-09', '14:50:01', '2025-04-09 18:50:01', '2025-04-09 18:50:01'),
+(59, 6, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA EVALUACIÓN', 'id: 2<br/>user_id: 6<br/>fecha_registro: 2025-04-09<br/>created_at: 2025-04-09 13:14:15<br/>updated_at: 2025-04-09 13:14:15<br/>', '', 'EVALUACIONES', '2025-04-09', '14:50:28', '2025-04-09 18:50:28', '2025-04-09 18:50:28'),
+(60, 6, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA EVALUACIÓN', 'id: 2<br/>user_id: 6<br/>fecha_registro: 2025-04-09<br/>created_at: 2025-04-09 13:14:15<br/>updated_at: 2025-04-09 13:14:15<br/>', '', 'EVALUACIONES', '2025-04-09', '14:50:47', '2025-04-09 18:50:47', '2025-04-09 18:50:47'),
+(61, 6, 'MODIFICACIÓN', 'EL USUARIO  MODIFICÓ UNA EVALUACIÓN', 'id: 2<br/>user_id: 6<br/>fecha_registro: 2025-04-09<br/>created_at: 2025-04-09 13:14:15<br/>updated_at: 2025-04-09 13:14:15<br/>', '', 'EVALUACIONES', '2025-04-09', '14:53:22', '2025-04-09 18:53:22', '2025-04-09 18:53:22');
 
 -- --------------------------------------------------------
 
@@ -235,7 +275,7 @@ INSERT INTO `materials` (`id`, `materia_id`, `fecha_registro`, `created_at`, `up
 CREATE TABLE `material_archivos` (
   `id` bigint UNSIGNED NOT NULL,
   `material_id` bigint UNSIGNED NOT NULL,
-  `archivo` varchar(300) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `archivo` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -258,7 +298,7 @@ INSERT INTO `material_archivos` (`id`, `material_id`, `archivo`, `created_at`, `
 
 CREATE TABLE `materias` (
   `id` bigint UNSIGNED NOT NULL,
-  `nombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nombre` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `fecha_registro` date DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -287,7 +327,7 @@ INSERT INTO `materias` (`id`, `nombre`, `fecha_registro`, `created_at`, `updated
 
 CREATE TABLE `migrations` (
   `id` int UNSIGNED NOT NULL,
-  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -315,15 +355,15 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 
 CREATE TABLE `users` (
   `id` bigint UNSIGNED NOT NULL,
-  `nombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `paterno` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `materno` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `ci` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `ci_exp` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tipo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `foto` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `nombre` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `paterno` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `materno` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ci` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ci_exp` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tipo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `foto` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `fecha_registro` date NOT NULL,
   `acceso` int NOT NULL,
   `curso_id` bigint UNSIGNED DEFAULT NULL,
@@ -446,19 +486,19 @@ ALTER TABLE `cursos`
 -- AUTO_INCREMENT de la tabla `evaluacions`
 --
 ALTER TABLE `evaluacions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `evaluacion_preguntas`
 --
 ALTER TABLE `evaluacion_preguntas`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `historial_accions`
 --
 ALTER TABLE `historial_accions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT de la tabla `materials`

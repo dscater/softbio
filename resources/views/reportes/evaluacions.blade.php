@@ -155,7 +155,7 @@
         .tituloTema {
             font-size: 11pt;
             font-weight: bold;
-            width: 100%;
+            width: 90%;
             text-align: center;
         }
 
@@ -184,6 +184,20 @@
         .incorrecto {
             color: red;
         }
+
+        .puntaje {
+            position: absolute;
+            right: 0px;
+            border: solid 1px;
+            display: block;
+            padding: 10px;
+            top: 120px;
+            font-size: 11pt;
+        }
+
+        .puntaje.arriba {
+            top: 20px;
+        }
     </style>
 </head>
 
@@ -209,7 +223,10 @@
         @endphp
         @if ($evaluacion)
             @foreach ($preguntas as $key_item => $item)
-                <p class="tituloTema">{{ $item['t'] }}</p>
+                <p class="tituloTema">{{ $item['t'] }}
+                    <span
+                        class="puntaje {{ $key_item > 0 ? 'arriba' : '' }}">{{ App\Models\Evaluacion::getCorrectosTema($key_item, $evaluacion->id) }}%</span>
+                </p>
                 <p class="txtInfo"><strong>Estudiante:</strong> {{ $usuario->full_name }}</p>
                 <p class="txtInfo"><strong>Curso:</strong> {{ $usuario->curso ? $usuario->curso->nombre : '' }}</p>
                 @foreach ($item['p'] as $index_preg => $item_preg)

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
 
 class Evaluacion extends Model
 {
@@ -30,5 +31,23 @@ class Evaluacion extends Model
     public function evaluacion_preguntas()
     {
         return $this->hasMany(EvaluacionPregunta::class, 'evaluacion_id');
+    }
+
+    public static function getCorrectosTema($tema, $evaluacion_id)
+    {
+        $jsonPath = public_path("assets/js/preguntas.json");
+        $jsonContent = file_get_contents($jsonPath);
+        $data = json_decode($jsonContent, true);
+        $totalPorTema = array_map(fn($tema) => count($tema['p']), $data);
+
+        $total_tema = $totalPorTema[$tema];
+
+        $correctos = EvaluacionPregunta::where("evaluacion_id", $evaluacion_id)
+            ->where("tema", $tema)
+            ->where("correcto", 1)->count();
+
+        $p = $correctos /  $total_tema;
+        $p = $p * 100;
+        return round($p, 2);
     }
 }

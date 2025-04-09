@@ -31,6 +31,7 @@ const listPreguntas = ref(preguntas.flatMap((tema) => tema.p));
 const indexPreguntaActual = ref(0);
 const preguntaActual = ref(listPreguntas.value[indexPreguntaActual.value]);
 const intervalTiempoJuego = ref(null);
+const etapaJuego = ref(1);
 const iniciarJuego = () => {
     jugando.value = true;
     conteoDeTiempo();
@@ -90,10 +91,15 @@ const verificaOpcion = (index_opcion) => {
     }
     actualizaPregunta();
 };
+const mitad_preguntas = ref(Math.round(listPreguntas.value.length / 2, 0));
 
 const reiniciaSwRespuesta = () => {
     swRespCorrecta.value = false;
     loadingPregunta.value = false;
+    if (indexPreguntaActual.value > mitad_preguntas.value) {
+        // if (indexPreguntaActual.value > 0) {
+        etapaJuego.value = 2;
+    }
 };
 
 const actualizaPregunta = () => {
@@ -101,11 +107,19 @@ const actualizaPregunta = () => {
     if (!swRespCorrecta.value) {
         loadingPregunta.value = false;
     }
+
+    if (indexPreguntaActual.value > mitad_preguntas.value) {
+        // if (indexPreguntaActual.value > 0) {
+        etapaJuego.value = 2;
+    }
+
     indexPreguntaActual.value++;
+
     if (!listPreguntas.value[indexPreguntaActual.value]) {
         console.log("Termina el juego");
         finalizarJuego();
     }
+
     finalizaConteo();
     reiniciaTiempoPregunta();
     conteoDeTiempo();
@@ -254,6 +268,7 @@ onBeforeUnmount(() => {});
                         :estadoJuego="jugando"
                         :puntajeActual="puntajePorPregunta"
                         :respCorrecta="swRespCorrecta"
+                        :etapaJuego="etapaJuego"
                         @actualizaEstadoRespuesta="reiniciaSwRespuesta"
                     ></Juego>
                 </div>
