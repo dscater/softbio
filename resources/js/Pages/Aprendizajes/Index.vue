@@ -96,6 +96,10 @@ const mitad_preguntas = ref(Math.round(listPreguntas.value.length / 2, 0));
 const reiniciaSwRespuesta = () => {
     swRespCorrecta.value = false;
     loadingPregunta.value = false;
+    verificaEtapa();
+};
+
+const verificaEtapa = () => {
     if (indexPreguntaActual.value > mitad_preguntas.value) {
         // if (indexPreguntaActual.value > 0) {
         etapaJuego.value = 2;
@@ -108,11 +112,7 @@ const actualizaPregunta = () => {
         loadingPregunta.value = false;
     }
 
-    if (indexPreguntaActual.value > mitad_preguntas.value) {
-        // if (indexPreguntaActual.value > 0) {
-        etapaJuego.value = 2;
-    }
-
+    verificaEtapa();
     indexPreguntaActual.value++;
 
     if (!listPreguntas.value[indexPreguntaActual.value]) {
@@ -143,6 +143,8 @@ const volverInicio = () => {
 };
 
 const reiniciaJuego = () => {
+    audioFondo.src = urlassets.value + "sounds/Woodlandfantasy.mp3";
+    audioFondo.play();
     puntaje.value = 0;
     tiempoPregunta.value = tiempoPorPregunta.value;
     puntajePorPregunta.value = 5;

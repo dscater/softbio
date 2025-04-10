@@ -262,22 +262,51 @@ var objPersonaje = {
     gravedad: 0.76, // Gravedad que afecta el salto
     sueloY: 120, // Suelo al que el personaje debe caer (puedes ajustarlo)
     mover: function (ctx) {
-        if (this.contFrames > this.speedFrame) {
-            if (this.frame < this.maxFrames) {
-                this.frame++;
-                this.personaje.src =
-                    urlassets.value +
-                    "imgs/aprendizaje/run" +
-                    this.frame +
-                    ".gif";
+        if (valEtapaJuego.value == 1) {
+            if (this.contFrames > this.speedFrame) {
+                if (this.frame < this.maxFrames) {
+                    this.frame++;
+                    this.personaje.src =
+                        urlassets.value +
+                        "imgs/aprendizaje/run" +
+                        this.frame +
+                        ".gif";
+                } else {
+                    this.personaje.src =
+                        urlassets.value + "imgs/aprendizaje/run9.gif";
+                    this.frame = 0;
+                }
+                this.contFrames = 0;
             } else {
-                this.personaje.src =
-                    urlassets.value + "imgs/aprendizaje/run9.gif";
-                this.frame = 0;
+                this.contFrames++;
             }
-            this.contFrames = 0;
         } else {
-            this.contFrames++;
+            personaje.src = urlassets.value + "imgs/aprendizaje/sprites.png";
+            this.personaje = personaje;
+
+            const frameWidth = 83.5; // ancho de cada frame
+            const frameHeight = 90; // alto de cada frame
+            const totalFrames = 6; // cantidad de frames
+
+            // Avanzar frame cada X ciclos
+            this.speedFrame = 10;
+            if (this.contFrames > this.speedFrame) {
+                this.frame = (this.frame + 1) % totalFrames;
+                this.contFrames = 0;
+            } else {
+                this.contFrames++;
+            }
+            ctx.drawImage(
+                this.personaje,
+                this.frame * frameWidth,
+                10,
+                frameWidth,
+                frameHeight,
+                this.x,
+                this.y + 13,
+                55,
+                90
+            );
         }
     },
     dibujar: function (ctx, cw) {
@@ -508,8 +537,21 @@ watch(
     () => props.etapaJuego,
     (newVal) => {
         valEtapaJuego.value = newVal;
-
+        audioFondo.src = urlassets.value + "sounds/Battleinthewinter.mp3";
+        audioFondo.play();
         if (valEtapaJuego.value == 2) {
+            background1.src =
+                urlassets.value +
+                "imgs/aprendizaje/parallax-forest-back-trees.png";
+            background2.src =
+                urlassets.value +
+                "imgs/aprendizaje/parallax-forest-front-trees.png";
+            background3.src =
+                urlassets.value + "imgs/aprendizaje/parallax-forest-lights.png";
+            background4.src =
+                urlassets.value +
+                "imgs/aprendizaje/parallax-forest-middle-trees.png";
+            background5.src = "";
             muestra_etapa2.value = true;
         }
     }
@@ -527,6 +569,13 @@ watch(
     }
 );
 
+const background1 = new Image();
+const background2 = new Image();
+const background3 = new Image();
+const background4 = new Image();
+const background5 = new Image();
+const background6 = new Image();
+
 onMounted(() => {
     const canvas = document.getElementById("canvas");
     canvas.width = window.innerWidth - 100;
@@ -535,49 +584,44 @@ onMounted(() => {
     const CANVAS_HEIGHT = canvas.height;
     const contexto = canvas.getContext("2d");
 
-    const background1 = new Image();
     background1.src = urlassets.value + "imgs/aprendizaje/plx1.png";
-    const background2 = new Image();
     background2.src = urlassets.value + "imgs/aprendizaje/plx2.png";
-    const background3 = new Image();
     background3.src = urlassets.value + "imgs/aprendizaje/plx3.png";
-    const background4 = new Image();
     background4.src = urlassets.value + "imgs/aprendizaje/plx4.png";
-    const background5 = new Image();
     background5.src = urlassets.value + "imgs/aprendizaje/plx5.png";
-    const background6 = new Image();
     background6.src = urlassets.value + "imgs/aprendizaje/jungletileset.png";
 
     objPersonaje.posicionInicial(CANVAS_WIDTH);
     moneda.posicionInicial(CANVAS_WIDTH);
-    valla.posicionInicial(CANVAS_WIDTH);
+    // valla.posicionInicial(CANVAS_WIDTH);
     objPersonaje.setEstadoPersonaje(0);
     const animacion = () => {
+
         contexto.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
         dibujarBackground(contexto);
         objPersonaje.dibujar(contexto, CANVAS_WIDTH);
         // console.log(muestra_etapa2.value);
-        if (!muestra_etapa2.value) {
-            moneda.dibujar(contexto, CANVAS_WIDTH);
-            moneda.animar(CANVAS_WIDTH);
-            moneda.setEjeX(moneda.xPosicionInicial);
-            colision(CANVAS_WIDTH, CANVAS_HEIGHT);
-        } else {
-            if (muestra_etapa2.value) {
-                // console.log("etapa 2");
-                valla.dibujar(contexto, CANVAS_WIDTH);
-                valla.setEjeX(valla.xPosicionInicial);
-                valla.moverIzquierda();
-                objPersonaje.actualizar();
-                if (valla.detectarProximidad(objPersonaje)) {
-                    valla.setEstado(1);
-                    objPersonaje.saltar();
-                } else {
-                    objPersonaje.caer();
-                }
-                valla.moverIzquierda();
-            }
-        }
+        // if (!muestra_etapa2.value) {
+        moneda.dibujar(contexto, CANVAS_WIDTH);
+        moneda.animar(CANVAS_WIDTH);
+        moneda.setEjeX(moneda.xPosicionInicial);
+        colision(CANVAS_WIDTH, CANVAS_HEIGHT);
+        // } else {
+        //     if (muestra_etapa2.value) {
+        //         // console.log("etapa 2");
+        //         valla.dibujar(contexto, CANVAS_WIDTH);
+        //         valla.setEjeX(valla.xPosicionInicial);
+        //         valla.moverIzquierda();
+        //         objPersonaje.actualizar();
+        //         if (valla.detectarProximidad(objPersonaje)) {
+        //             valla.setEstado(1);
+        //             objPersonaje.saltar();
+        //         } else {
+        //             objPersonaje.caer();
+        //         }
+        //         valla.moverIzquierda();
+        //     }
+        // }
         // setTimeout(() => {
         objPersonaje.mover(contexto);
         objPersonaje.retroceder(CANVAS_WIDTH);
@@ -594,12 +638,23 @@ onMounted(() => {
         // Calcula cuántas veces es necesario dibujar la imagen para llenar el ancho del lienzo
         const nroFrames = Math.ceil(CANVAS_WIDTH / bgWidth) + 1;
         // Dibuja la imagen repetidamente para cubrir el lienzo completo
-        for (let i = 0; i < nroFrames; i++) {
-            ctx.drawImage(background1, xBackground1 + i * bgWidth, 0);
-            ctx.drawImage(background2, xBackground1 + i * bgWidth, 0);
-            ctx.drawImage(background3, xBackground1 + i * bgWidth, 0);
-            ctx.drawImage(background4, xBackground1 + i * bgWidth, 0);
-            ctx.drawImage(background5, xBackground1 + i * bgWidth, 0);
+        if (background1.complete && background2.complete && background3.complete && background4.complete) {
+            for (let i = 0; i < nroFrames; i++) {
+                if (valEtapaJuego.value == 1) {
+                    ctx.drawImage(background1, xBackground1 + i * bgWidth, 0);
+                    ctx.drawImage(background2, xBackground1 + i * bgWidth, 0);
+                    ctx.drawImage(background3, xBackground1 + i * bgWidth, 0);
+                    ctx.drawImage(background4, xBackground1 + i * bgWidth, 0);
+                    if( background5.complete){
+                        ctx.drawImage(background5, xBackground1 + i * bgWidth, 0);
+                    }
+                } else {
+                    ctx.drawImage(background1, xBackground1 + i * bgWidth, 45);
+                    ctx.drawImage(background2, xBackground1 + i * bgWidth, 45);
+                    ctx.drawImage(background3, xBackground1 + i * bgWidth, 45);
+                    ctx.drawImage(background4, xBackground1 + i * bgWidth, 45);
+                }
+            }
         }
         // dibujar el piso
         const nroFramesPiso = Math.ceil(CANVAS_WIDTH / 80) + 1;
